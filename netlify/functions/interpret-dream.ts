@@ -1,7 +1,7 @@
 import type { Handler } from "@netlify/functions";
 
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 
 const SYSTEM_PROMPT = `You are a compassionate and insightful dream interpreter with deep expertise in Jungian psychology, universal dream symbolism, emotional wellness, and mythology. Analyze the following dream and provide a thoughtful, warm, and supportive interpretation.
 
