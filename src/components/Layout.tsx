@@ -10,6 +10,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <NavBar />
       <div className="page-container">
         {children}
+        <div className="footer-credit">Brewed with ❤️ & ☕ in BLR by Shubham.</div>
       </div>
     </div>
   );

@@ -34,6 +34,7 @@ const SharedDream: React.FC = () => {
       <div className="page-container shared-page">
         <div className="loading-screen" style={{ minHeight: 'auto', padding: '80px 0' }}>
           <div className="spinner" />
+          <div className="footer-credit" style={{ marginTop: 40 }}>Brewed with ❤️ & ☕ in BLR by Shubham.</div>
         </div>
       </div>
     );
@@ -47,6 +48,7 @@ const SharedDream: React.FC = () => {
           <div className="empty-state-icon">🌑</div>
           <p className="empty-state-text">This dream interpretation is no longer available.</p>
           <Link to="/" className="btn btn-primary" style={{ marginTop: 24 }}>Try Dream Interpreter</Link>
+          <div className="footer-credit" style={{ marginTop: 60 }}>Brewed with ❤️ & ☕ in BLR by Shubham.</div>
         </div>
       </div>
     );
@@ -105,6 +107,7 @@ const SharedDream: React.FC = () => {
           <p style={{ color: 'var(--text-muted)', marginBottom: 16 }}>Want to understand your own dreams?</p>
           <Link to="/" className="btn btn-primary">Try Dream Interpreter ✨</Link>
         </div>
+        <div className="footer-credit">Brewed with ❤️ & ☕ in BLR by Shubham.</div>
       </div>
     </div>
   );

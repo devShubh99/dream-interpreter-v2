@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Moon, LogOut } from 'lucide-react';
+import { Star, Shield, LogOut, Moon } from 'lucide-react';
 import { useAuth } from '../lib/AuthContext';
 import { supabase, isAdmin } from '../lib/supabase';
 
@@ -32,7 +32,7 @@ const NavBar: React.FC = () => {
             className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
             onClick={() => navigate('/dashboard')}
           >
-            <Moon size={14} style={{ marginRight: 4 }} />
+            <Star size={14} style={{ marginRight: 4 }} />
             My Dreams
           </button>
 
@@ -41,7 +41,7 @@ const NavBar: React.FC = () => {
               className={`navbar-link ${location.pathname === '/admin' ? 'active' : ''}`}
               onClick={() => navigate('/admin')}
             >
-              <Moon size={14} style={{ marginRight: 4 }} />
+              <Shield size={14} style={{ marginRight: 4 }} />
               Admin
             </button>
           )}

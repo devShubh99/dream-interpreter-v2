@@ -211,6 +211,7 @@ const AuthForm: React.FC = () => {
               {isSignUp ? 'Sign In' : 'Sign Up'}
             </button>
           </div>
+          <div className="footer-credit">Brewed with ❤️ & ☕ in BLR by Shubham.</div>
         </div>
       </div>
     </div>

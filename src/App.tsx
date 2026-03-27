@@ -28,6 +28,7 @@ const App: React.FC = () => {
       <div className="loading-screen">
         <div className="bg-effects"><div className="stars" /></div>
         <div className="spinner" />
+        <div className="footer-credit" style={{ position: 'fixed', bottom: 20 }}>Brewed with ❤️ & ☕ in BLR by Shubham.</div>
       </div>
     );
   }
