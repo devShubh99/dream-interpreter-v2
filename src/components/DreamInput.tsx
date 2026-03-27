@@ -66,7 +66,7 @@ const DreamInput: React.FC<DreamInputProps> = ({ onDreamSaved }) => {
   return (
     <div className="dream-input-section">
       <div className="card dream-input-card">
-        <h2 className="dream-input-title">What did you dream about?</h2>
+        <h2 className="dream-input-title">✨ What did you dream about? 🔮</h2>
 
         <div className="input-group">
           <textarea

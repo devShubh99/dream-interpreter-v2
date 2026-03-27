@@ -40,7 +40,7 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
   if (loading) {
     return (
       <div className="history-section">
-        <h2 className="section-title">Dream Journal</h2>
+        <h2 className="section-title">📔 Your Dream Journal</h2>
         <div className="history-grid">
           <div className="card"><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /></div>
           <div className="card"><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /></div>
@@ -52,10 +52,10 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
   if (dreams.length === 0) {
     return (
       <div className="history-section">
-        <h2 className="section-title">Dream Journal</h2>
+        <h2 className="section-title">📔 Your Dream Journal</h2>
         <div className="empty-state">
           <div className="empty-state-icon">☁️</div>
-          <p className="empty-state-text">No dreams yet. Describe your first dream above!</p>
+          <p className="empty-state-text">No dreams yet. Describe your first dream above to start your journey! ✨</p>
         </div>
       </div>
     );
