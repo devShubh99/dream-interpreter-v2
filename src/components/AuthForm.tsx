@@ -115,7 +115,9 @@ const AuthForm: React.FC = () => {
                       className={`dropdown-trigger ${isGenderOpen ? 'open' : ''}`}
                       onClick={() => setIsGenderOpen(!isGenderOpen)}
                     >
-                      {gender ? genderOptions.find(o => o.value === gender)?.label : 'Select your gender'}
+                      <span style={{ color: gender ? 'inherit' : 'var(--text-muted)' }}>
+                        {gender ? genderOptions.find(o => o.value === gender)?.label : 'Select your gender'}
+                      </span>
                       <ChevronDown size={14} style={{ transform: isGenderOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
                     </div>
                     {isGenderOpen && (
