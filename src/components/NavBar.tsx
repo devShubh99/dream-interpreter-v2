@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
 
   if (!session) return null;
 
-  const displayName = session.user.user_metadata?.username || 'dreamer';
+  const displayName = session.user.user_metadata?.display_name || session.user.email || 'dreamer';
 
   return (
     <nav className="navbar">

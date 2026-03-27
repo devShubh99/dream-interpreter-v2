@@ -36,7 +36,7 @@ const DreamInput: React.FC<DreamInputProps> = ({ onDreamSaved }) => {
 
       const { error: dbError } = await supabase.from('dreams').insert({
         user_id: session.user.id,
-        user_email: session.user.user_metadata?.username || null,
+        user_email: session.user.email || null,
         dream_text: dreamText.trim(),
         interpretation,
       });

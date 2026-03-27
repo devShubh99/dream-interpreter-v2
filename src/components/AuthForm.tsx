@@ -3,7 +3,8 @@ import { supabase } from '../lib/supabase';
 
 const AuthForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -15,38 +16,41 @@ const AuthForm: React.FC = () => {
     setError(null);
     setSuccessMsg(null);
 
-    const trimmedUsername = username.trim().toLowerCase();
-    if (!trimmedUsername) {
-      setError('Please enter a username');
+    const trimmedEmail = email.trim().toLowerCase();
+    if (!trimmedEmail) {
+      setError('Please enter your email');
       setLoading(false);
       return;
     }
 
-    // Use a synthetic email for Supabase Auth (it requires email)
-    const syntheticEmail = `${trimmedUsername}@dreaminterpreter.app`;
-
     try {
       if (isSignUp) {
+        const trimmedName = name.trim();
+        if (!trimmedName) {
+          setError('Please enter your name');
+          setLoading(false);
+          return;
+        }
         const { error } = await supabase.auth.signUp({
-          email: syntheticEmail,
+          email: trimmedEmail,
           password,
-          options: { data: { username: trimmedUsername } },
+          options: { data: { display_name: trimmedName } },
         });
         if (error) {
           if (error.message.includes('already registered')) {
-            throw new Error('This username is already taken');
+            throw new Error('This email is already registered');
           }
           throw error;
         }
-        setSuccessMsg('Account created! Signing you in...');
+        setSuccessMsg('Account created! Check your email to confirm, or sign in.');
       } else {
         const { error } = await supabase.auth.signInWithPassword({
-          email: syntheticEmail,
+          email: trimmedEmail,
           password,
         });
         if (error) {
           if (error.message.includes('Invalid login')) {
-            throw new Error('Invalid username or password');
+            throw new Error('Invalid email or password');
           }
           throw error;
         }
@@ -70,19 +74,35 @@ const AuthForm: React.FC = () => {
 
         <div className="card">
           <form onSubmit={handleSubmit}>
+            {isSignUp && (
+              <div className="input-group">
+                <label htmlFor="name" className="input-label">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  className="input"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  minLength={2}
+                  maxLength={50}
+                  autoComplete="name"
+                />
+              </div>
+            )}
+
             <div className="input-group">
-              <label htmlFor="username" className="input-label">Username</label>
+              <label htmlFor="email" className="input-label">Email</label>
               <input
-                id="username"
-                type="text"
+                id="email"
+                type="email"
                 className="input"
-                placeholder="Enter a username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
-                minLength={3}
-                maxLength={24}
-                autoComplete="username"
+                autoComplete="email"
               />
             </div>
 
