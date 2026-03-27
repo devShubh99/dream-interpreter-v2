@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, ChevronDown, Check } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const AuthForm: React.FC = () => {
@@ -12,6 +12,14 @@ const AuthForm: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
+  const [isGenderOpen, setIsGenderOpen] = useState(false);
+
+  const genderOptions = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'non-binary', label: 'Non-binary' },
+    { value: 'prefer-not-to-say', label: 'Prefer not to say' }
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,20 +109,33 @@ const AuthForm: React.FC = () => {
                   />
                 </div>
                 <div className="input-group">
-                  <label htmlFor="gender" className="input-label">Gender</label>
-                  <select
-                    id="gender"
-                    className="input"
-                    value={gender}
-                    onChange={(e) => setGender(e.target.value)}
-                    required
-                  >
-                    <option value="" disabled>Select your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="non-binary">Non-binary</option>
-                    <option value="prefer-not-to-say">Prefer not to say</option>
-                  </select>
+                  <label className="input-label">Gender</label>
+                  <div className="dropdown-container">
+                    <div 
+                      className={`dropdown-trigger ${isGenderOpen ? 'open' : ''}`}
+                      onClick={() => setIsGenderOpen(!isGenderOpen)}
+                    >
+                      {gender ? genderOptions.find(o => o.value === gender)?.label : 'Select your gender'}
+                      <ChevronDown size={14} style={{ transform: isGenderOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                    </div>
+                    {isGenderOpen && (
+                      <div className="dropdown-menu">
+                        {genderOptions.map((opt) => (
+                          <div 
+                            key={opt.value}
+                            className={`dropdown-item ${gender === opt.value ? 'selected' : ''}`}
+                            onClick={() => {
+                              setGender(opt.value);
+                              setIsGenderOpen(false);
+                            }}
+                          >
+                            <span>{opt.label}</span>
+                            {gender === opt.value && <Check size={12} />}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </>
             )}
