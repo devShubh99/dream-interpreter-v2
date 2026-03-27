@@ -9,17 +9,16 @@ const AdminPanel: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchShared = async () => {
+    const fetchAll = async () => {
       const { data, error } = await supabase
         .from('dreams')
         .select('*')
-        .eq('is_shared', true)
         .order('created_at', { ascending: false });
 
       if (!error && data) setDreams(data as Dream[]);
       setLoading(false);
     };
-    fetchShared();
+    fetchAll();
   }, []);
 
   const formatDate = (d: string) =>
@@ -32,7 +31,7 @@ const AdminPanel: React.FC = () => {
         Admin Panel
       </h1>
       <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: 32 }}>
-        All publicly shared dream interpretations ({dreams.length} total)
+        All dream interpretations in the system ({dreams.length} total)
       </p>
 
       {loading ? (
@@ -40,7 +39,7 @@ const AdminPanel: React.FC = () => {
       ) : dreams.length === 0 ? (
         <div className="empty-state">
           <div className="empty-state-icon">📭</div>
-          <p className="empty-state-text">No shared dreams yet.</p>
+          <p className="empty-state-text">No dreams found in the database.</p>
         </div>
       ) : (
         <div className="admin-grid">
@@ -61,7 +60,21 @@ const AdminPanel: React.FC = () => {
                     </span>
                   )}
                 </div>
-                <span>{formatDate(dream.created_at)}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ 
+                    fontSize: '0.65rem', 
+                    padding: '2px 6px', 
+                    borderRadius: '4px',
+                    background: dream.is_shared ? 'rgba(16, 185, 129, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                    color: dream.is_shared ? '#10b981' : 'var(--text-muted)',
+                    border: `1px solid ${dream.is_shared ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255, 255, 255, 0.1)'}`,
+                    textTransform: 'uppercase',
+                    fontWeight: 600
+                  }}>
+                    {dream.is_shared ? 'Public' : 'Private'}
+                  </span>
+                  <span style={{ fontSize: '0.85rem' }}>{formatDate(dream.created_at)}</span>
+                </div>
               </div>
               <div className="admin-dream-text">{dream.dream_text}</div>
 
