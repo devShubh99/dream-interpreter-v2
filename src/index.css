@@ -42,17 +42,19 @@
   --ease-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; background-color: var(--bg-deep); overscroll-behavior: none; }
 body {
   font-family: var(--font);
   background: 
     linear-gradient(rgba(13, 5, 25, 0.5), rgba(13, 5, 25, 0.5)),
     url('/ethereal-bg.jpg') no-repeat center center fixed;
   background-size: cover;
+  background-color: var(--bg-deep);
   color: var(--text);
   min-height: 100vh;
   line-height: 1.6;
   overflow-x: hidden;
+  overscroll-behavior: none;
 }
 #root { min-height: 100vh; }
 a { color: var(--accent); text-decoration: none; transition: color var(--ease-fast); }
@@ -147,13 +149,18 @@ a:hover { color: var(--accent-hover); }
 .input:focus { border-color: var(--border-focus); box-shadow: 0 0 0 3px var(--accent-soft); }
 .input::placeholder { color: var(--text-muted); }
 textarea.input { resize: vertical; min-height: 160px; line-height: 1.6; }
+select.input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a78bce' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
+select.input option { background: #1e1040; color: var(--text); }
 
 /* ---- Auth Page ---- */
 .auth-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; position: relative; z-index: 1; }
 .auth-container { width: 100%; max-width: 420px; animation: slide-up 0.6s var(--ease-spring); }
 .auth-header { text-align: center; margin-bottom: 48px; }
-.auth-title { font-size: 2.2rem; font-weight: 300; letter-spacing: 0.04em; background: linear-gradient(135deg, #d8b4fe, #f0abfc, #f9a8d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 10px; }
-.auth-subtitle { color: var(--text-secondary); font-size: 1rem; font-weight: 300; letter-spacing: 0.02em; opacity: 0.85; }
+.auth-logo { font-size: 3.5rem; margin-bottom: 16px; filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.4)); animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+.auth-title { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.01em; background: linear-gradient(135deg, #e9d5ff, #f0abfc, #f9a8d4, #c4b5fd); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; filter: drop-shadow(0 0 24px rgba(217, 70, 239, 0.3)); animation: gradient-shift 6s ease infinite; }
+@keyframes gradient-shift { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.auth-subtitle { color: var(--text-secondary); font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em; opacity: 0.9; }
 .auth-toggle { text-align: center; margin-top: 20px; color: var(--text-muted); font-size: 0.875rem; }
 .auth-toggle button { background: none; border: none; color: var(--accent); cursor: pointer; font-family: var(--font); font-size: 0.875rem; font-weight: 500; }
 .auth-toggle button:hover { text-decoration: underline; }

@@ -9,6 +9,8 @@ export interface DreamInterpretation {
   symbols: DreamSymbol[];
   personalInsight: string;
   guidance: string;
+  userName?: string;
+  userGender?: string;
 }
 
 export interface Dream {

@@ -48,9 +48,13 @@ const handler: Handler = async (event) => {
   }
 
   let dreamText: string;
+  let userName: string | undefined;
+  let userGender: string | undefined;
   try {
     const body = JSON.parse(event.body || "{}");
     dreamText = body.dreamText;
+    userName = body.userName;
+    userGender = body.userGender;
   } catch {
     return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid request body" }) };
   }
@@ -62,6 +66,12 @@ const handler: Handler = async (event) => {
   // Limit dream text length to prevent abuse
   const trimmedDream = dreamText.trim().slice(0, 3000);
 
+  // Build personalized prompt
+  const userContext = [
+    userName ? `The dreamer's name is ${userName}.` : "",
+    userGender ? `The dreamer identifies as ${userGender}.` : ""
+  ].filter(Boolean).join(" ");
+
   try {
     const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
       method: "POST",
@@ -70,7 +80,7 @@ const handler: Handler = async (event) => {
         contents: [
           {
             parts: [
-              { text: `${SYSTEM_PROMPT}\n\nDream: "${trimmedDream}"` },
+              { text: `${SYSTEM_PROMPT}\n\n${userContext}\n\nDream: "${trimmedDream}"` },
             ],
           },
         ],

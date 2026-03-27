@@ -21,10 +21,16 @@ const DreamInput: React.FC<DreamInputProps> = ({ onDreamSaved }) => {
     setError(null);
 
     try {
+      const { display_name, gender } = session.user.user_metadata || {};
+      
       const response = await fetch('/.netlify/functions/interpret-dream', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dreamText: dreamText.trim() }),
+        body: JSON.stringify({ 
+          dreamText: dreamText.trim(),
+          userName: display_name,
+          userGender: gender
+        }),
       });
 
       if (!response.ok) {
@@ -32,7 +38,12 @@ const DreamInput: React.FC<DreamInputProps> = ({ onDreamSaved }) => {
         throw new Error(errData.error || 'Failed to interpret dream');
       }
 
-      const interpretation: DreamInterpretation = await response.json();
+      const interpretationData = await response.json();
+      const interpretation: DreamInterpretation = {
+        ...interpretationData,
+        userName: display_name,
+        userGender: gender
+      };
 
       const { error: dbError } = await supabase.from('dreams').insert({
         user_id: session.user.id,

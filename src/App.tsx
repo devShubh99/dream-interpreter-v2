@@ -6,6 +6,8 @@ import Layout from './components/Layout';
 import DreamInput from './components/DreamInput';
 import DreamHistory from './components/DreamHistory';
 import SharedDream from './components/SharedDream';
+import AdminPanel from './components/AdminPanel';
+import { isAdmin } from './lib/supabase';
 
 const Dashboard: React.FC = () => {
   const [refreshKey, setRefreshKey] = useState(0);
@@ -49,6 +51,17 @@ const App: React.FC = () => {
       <Route
         path="/dashboard"
         element={session ? <Dashboard /> : <Navigate to="/" replace />}
+      />
+
+      <Route
+        path="/admin"
+        element={
+          session && isAdmin(session.user.email) ? (
+            <Layout>
+              <AdminPanel />
+            </Layout>
+          ) : <Navigate to="/" replace />
+        }
       />
 
       <Route path="*" element={<Navigate to="/" replace />} />

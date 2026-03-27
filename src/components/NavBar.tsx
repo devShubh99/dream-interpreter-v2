@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Moon, LogOut } from 'lucide-react';
 import { useAuth } from '../lib/AuthContext';
-import { supabase } from '../lib/supabase';
+import { supabase, isAdmin } from '../lib/supabase';
 
 const NavBar: React.FC = () => {
   const { session } = useAuth();
@@ -16,6 +16,7 @@ const NavBar: React.FC = () => {
 
   if (!session) return null;
 
+  const userIsAdmin = isAdmin(session.user.email);
   const displayName = session.user.user_metadata?.display_name || session.user.email || 'dreamer';
 
   return (
@@ -34,6 +35,16 @@ const NavBar: React.FC = () => {
             <Moon size={14} style={{ marginRight: 4 }} />
             My Dreams
           </button>
+
+          {userIsAdmin && (
+            <button
+              className={`navbar-link ${location.pathname === '/admin' ? 'active' : ''}`}
+              onClick={() => navigate('/admin')}
+            >
+              <Moon size={14} style={{ marginRight: 4 }} />
+              Admin
+            </button>
+          )}
 
           <div className="navbar-user-badge">
             <img

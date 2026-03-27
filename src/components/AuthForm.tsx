@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const AuthForm: React.FC = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
@@ -31,10 +34,15 @@ const AuthForm: React.FC = () => {
           setLoading(false);
           return;
         }
+        if (!gender) {
+          setError('Please select your gender');
+          setLoading(false);
+          return;
+        }
         const { error } = await supabase.auth.signUp({
           email: trimmedEmail,
           password,
-          options: { data: { display_name: trimmedName } },
+          options: { data: { display_name: trimmedName, gender } },
         });
         if (error) {
           if (error.message.includes('already registered')) {
@@ -66,30 +74,49 @@ const AuthForm: React.FC = () => {
     <div className="auth-page">
       <div className="auth-container">
         <div className="auth-header">
+          <div className="auth-logo">🌙</div>
           <h1 className="auth-title">Dream Interpreter</h1>
           <p className="auth-subtitle">
-            Share your dream, discover its meaning ✨
+            Uncover the hidden meaning of your dreams
           </p>
         </div>
 
         <div className="card">
           <form onSubmit={handleSubmit}>
             {isSignUp && (
-              <div className="input-group">
-                <label htmlFor="name" className="input-label">Name</label>
-                <input
-                  id="name"
-                  type="text"
-                  className="input"
-                  placeholder="Your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  minLength={2}
-                  maxLength={50}
-                  autoComplete="name"
-                />
-              </div>
+              <>
+                <div className="input-group">
+                  <label htmlFor="name" className="input-label">Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    className="input"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    minLength={2}
+                    maxLength={50}
+                    autoComplete="name"
+                  />
+                </div>
+                <div className="input-group">
+                  <label htmlFor="gender" className="input-label">Gender</label>
+                  <select
+                    id="gender"
+                    className="input"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    required
+                  >
+                    <option value="" disabled>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="non-binary">Non-binary</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                  </select>
+                </div>
+              </>
             )}
 
             <div className="input-group">
@@ -108,17 +135,41 @@ const AuthForm: React.FC = () => {
 
             <div className="input-group">
               <label htmlFor="password" className="input-label">Password</label>
-              <input
-                id="password"
-                type="password"
-                className="input"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                minLength={6}
-                autoComplete={isSignUp ? 'new-password' : 'current-password'}
-              />
+              <div style={{ position: 'relative' }}>
+                <input
+                  id="password"
+                  type={showPassword ? 'text' : 'password'}
+                  className="input"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  minLength={6}
+                  autoComplete={isSignUp ? 'new-password' : 'current-password'}
+                  style={{ paddingRight: 44 }}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: 12,
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: 'var(--text-muted)',
+                    padding: 4,
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                  tabIndex={-1}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                </button>
+              </div>
             </div>
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading}>

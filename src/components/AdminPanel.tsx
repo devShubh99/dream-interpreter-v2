@@ -51,7 +51,16 @@ const AdminPanel: React.FC = () => {
               onClick={() => setExpandedId(expandedId === dream.id ? null : dream.id)}
             >
               <div className="admin-card-meta">
-                <span>{dream.user_email || 'Unknown user'}</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  <span style={{ fontWeight: 600, color: 'var(--text)' }}>
+                    {dream.user_email || 'Anonymous'}
+                  </span>
+                  {dream.interpretation?.userName && (
+                    <span style={{ fontSize: '0.7rem', opacity: 0.8 }}>
+                      {dream.interpretation.userName} • {dream.interpretation.userGender || 'Neutral'}
+                    </span>
+                  )}
+                </div>
                 <span>{formatDate(dream.created_at)}</span>
               </div>
               <div className="admin-dream-text">{dream.dream_text}</div>
