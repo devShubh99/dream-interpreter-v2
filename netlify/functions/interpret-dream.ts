@@ -84,8 +84,13 @@ const handler: Handler = async (event) => {
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error("Gemini API error:", errText);
-      return { statusCode: 502, headers, body: JSON.stringify({ error: "Failed to reach AI service" }) };
+      console.error("Gemini API error:", response.status, errText);
+      let detail = "Failed to reach AI service";
+      try {
+        const errJson = JSON.parse(errText);
+        detail = errJson?.error?.message || detail;
+      } catch { /* use default */ }
+      return { statusCode: 502, headers, body: JSON.stringify({ error: detail }) };
     }
 
     const data = await response.json();
