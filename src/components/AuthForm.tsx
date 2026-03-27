@@ -42,7 +42,7 @@ const AuthForm: React.FC = () => {
           }
           throw error;
         }
-        setSuccessMsg('Account created! Check your email to confirm, or sign in.');
+        setSuccessMsg('Account created! Please check your email and click the confirmation link to sign in.');
       } else {
         const { error } = await supabase.auth.signInWithPassword({
           email: trimmedEmail,
