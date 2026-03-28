@@ -11,6 +11,7 @@ You MUST respond with ONLY a valid JSON object (no markdown, no code fences, no 
 {
   "mainThemes": ["✨ theme1 with emoji", "🌟 theme2 with emoji", "💫 theme3 with emoji"],
   "emotionalTone": "A rich description with relevant emojis throughout 🌊🌙",
+  "sentimentScore": 7,
   "symbols": [
     {"symbol": "Symbol Name", "meaning": "Detailed symbolic meaning with emojis 🗝️✨"},
     {"symbol": "Symbol Name", "meaning": "Detailed symbolic meaning with emojis 🧚‍♂️🌌"}
@@ -22,6 +23,7 @@ You MUST respond with ONLY a valid JSON object (no markdown, no code fences, no 
 Guidelines:
 - Identify 3-5 main themes
 - Provide 3-6 dream symbols with detailed meanings
+- Evaluate a sentimentScore integer from 1 (very negative/nightmarish) to 10 (very positive/euphoric)
 - Draw from Jungian archetypes, common cultural symbolism, and emotional psychology
 - ALWAYS include relevant emojis in every field of the response
 - Be warm, supportive, and non-judgmental
@@ -123,7 +125,7 @@ const handler: Handler = async (event) => {
     const interpretation = JSON.parse(jsonMatch[0]);
 
     // Validate required fields
-    if (!interpretation.mainThemes || !interpretation.symbols || !interpretation.personalInsight) {
+    if (!interpretation.mainThemes || !interpretation.symbols || !interpretation.personalInsight || typeof interpretation.sentimentScore !== "number") {
       return { statusCode: 502, headers, body: JSON.stringify({ error: "Incomplete interpretation from AI" }) };
     }
 

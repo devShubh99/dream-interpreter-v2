@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS public.dreams (
   interpretation JSONB,
   is_shared BOOLEAN DEFAULT FALSE,
   share_id UUID DEFAULT gen_random_uuid(),
+  sentiment_score INTEGER,
+  main_themes TEXT[],
   deleted_at TIMESTAMPTZ DEFAULT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -44,3 +46,5 @@ CREATE INDEX IF NOT EXISTS idx_dreams_user_id ON public.dreams(user_id);
 CREATE INDEX IF NOT EXISTS idx_dreams_deleted ON public.dreams(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX IF NOT EXISTS idx_dreams_share_id ON public.dreams(share_id) WHERE is_shared = true;
 CREATE INDEX IF NOT EXISTS idx_dreams_shared ON public.dreams(is_shared) WHERE is_shared = true;
+CREATE INDEX IF NOT EXISTS idx_dreams_sentiment_score ON public.dreams(sentiment_score);
+CREATE INDEX IF NOT EXISTS idx_dreams_main_themes ON public.dreams USING GIN (main_themes);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../lib/AuthContext';
 import { supabase } from '../lib/supabase';
+import { useFilter } from '../lib/FilterContext';
 import DreamResult from './DreamResult';
 import type { Dream } from '../lib/types';
 
@@ -10,6 +11,7 @@ interface DreamHistoryProps {
 
 const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
   const { session } = useAuth();
+  const { filterWord } = useFilter();
   const [dreams, setDreams] = useState<Dream[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -90,16 +92,37 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
     );
   }
 
+  const filteredDreams = filterWord
+    ? dreams.filter((d) => {
+        const fullText = [
+          ...(d.main_themes || []),
+          ...(d.interpretation?.mainThemes || []),
+          ...(d.interpretation?.symbols?.map(s => s.symbol) || [])
+        ].join(' ').toLowerCase();
+        return fullText.includes(filterWord.toLowerCase());
+      })
+    : dreams;
+
+  const getSentimentColor = (score: number | null | undefined) => {
+    if (score === null || score === undefined) return 'rgba(255, 255, 255, 0.05)';
+    if (score <= 3) return '#7E22CE'; // Deep Purple (Shadow/Nightmare)
+    if (score <= 5) return '#3B82F6'; // Nebula Blue (Heavy/Melancholy)
+    if (score <= 7) return '#10B981'; // Emerald (Neutral/Aurora)
+    if (score <= 9) return '#F59E0B'; // Amber (Inspired/Stellar)
+    return '#FFFFFF'; // Pure White (Lucid/Transcendent)
+  };
+
   return (
     <div className="history-section">
       <h2 className="section-title">Dream Journal</h2>
 
       <div className="history-grid">
-        {dreams.map((dream) => (
+        {filteredDreams.map((dream) => (
           <div
             key={dream.id}
             className={`card history-card ${expandedId === dream.id ? 'history-card-expanded' : ''}`}
             onClick={() => setExpandedId(expandedId === dream.id ? null : dream.id)}
+            style={{ '--current-sentiment-color': getSentimentColor(dream.sentiment_score) } as React.CSSProperties}
           >
             <span className="history-date">{formatDate(dream.created_at)}</span>
             <p className="history-preview-text">{dream.dream_text}</p>

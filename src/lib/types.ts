@@ -6,6 +6,7 @@ export interface DreamSymbol {
 export interface DreamInterpretation {
   mainThemes: string[];
   emotionalTone: string;
+  sentimentScore: number;
   symbols: DreamSymbol[];
   personalInsight: string;
   guidance: string;
@@ -21,6 +22,8 @@ export interface Dream {
   interpretation: DreamInterpretation | null;
   is_shared: boolean;
   share_id: string;
+  sentiment_score?: number | null;
+  main_themes?: string[] | null;
   deleted_at?: string;
   created_at: string;
 }

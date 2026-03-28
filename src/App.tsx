@@ -5,6 +5,7 @@ import AuthForm from './components/AuthForm';
 import Layout from './components/Layout';
 import DreamInput from './components/DreamInput';
 import DreamHistory from './components/DreamHistory';
+import AnalyticsDashboard from './components/AnalyticsDashboard';
 import SharedDream from './components/SharedDream';
 import AdminPanel from './components/AdminPanel';
 import { isAdmin } from './lib/supabase';
@@ -15,6 +16,7 @@ const Dashboard: React.FC = () => {
   return (
     <Layout>
       <DreamInput onDreamSaved={() => setRefreshKey((k) => k + 1)} />
+      <AnalyticsDashboard refreshKey={refreshKey} />
       <DreamHistory refreshKey={refreshKey} />
     </Layout>
   );

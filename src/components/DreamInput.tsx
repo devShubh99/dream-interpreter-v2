@@ -50,6 +50,8 @@ const DreamInput: React.FC<DreamInputProps> = ({ onDreamSaved }) => {
         user_email: session.user.email || null,
         dream_text: dreamText.trim(),
         interpretation,
+        sentiment_score: interpretation.sentimentScore,
+        main_themes: interpretation.mainThemes,
       });
 
       if (dbError) throw dbError;
