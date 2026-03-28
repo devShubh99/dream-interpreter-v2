@@ -21,5 +21,6 @@ export interface Dream {
   interpretation: DreamInterpretation | null;
   is_shared: boolean;
   share_id: string;
+  deleted_at?: string;
   created_at: string;
 }

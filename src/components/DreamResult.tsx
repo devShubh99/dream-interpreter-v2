@@ -38,7 +38,10 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
 
   const handleDelete = async () => {
     if (!confirm('Delete this dream interpretation?')) return;
-    const { error } = await supabase.from('dreams').delete().eq('id', dream.id);
+    const { error } = await supabase
+      .from('dreams')
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', dream.id);
     if (!error) onUpdate?.();
   };
 
