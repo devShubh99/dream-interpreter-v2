@@ -28,22 +28,24 @@ const NavBar: React.FC = () => {
         </div>
 
         <div className="navbar-links">
-          <button
-            className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
-            onClick={() => navigate('/dashboard')}
-          >
-            <Star size={14} style={{ marginRight: 4 }} />
-            My Dreams
-          </button>
-
           {userIsAdmin && (
-            <button
-              className={`navbar-link ${location.pathname === '/admin' ? 'active' : ''}`}
-              onClick={() => navigate('/admin')}
-            >
-              <Shield size={14} style={{ marginRight: 4 }} />
-              Admin
-            </button>
+            <>
+              <button
+                className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
+                onClick={() => navigate('/dashboard')}
+              >
+                <Star size={14} style={{ marginRight: 4 }} />
+                My Dreams
+              </button>
+
+              <button
+                className={`navbar-link ${location.pathname === '/admin' ? 'active' : ''}`}
+                onClick={() => navigate('/admin')}
+              >
+                <Shield size={14} style={{ marginRight: 4 }} />
+                Admin
+              </button>
+            </>
           )}
 
           <div className="navbar-user-badge">
