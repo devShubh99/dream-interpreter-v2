@@ -1,8 +1,3 @@
--- ============================================
--- Dream Interpreter — Supabase Database Setup
--- Run this in your Supabase SQL Editor
--- ============================================
-
 -- Dreams table
 CREATE TABLE IF NOT EXISTS public.dreams (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -12,43 +7,42 @@ CREATE TABLE IF NOT EXISTS public.dreams (
   interpretation JSONB,
   is_shared BOOLEAN DEFAULT FALSE,
   share_id UUID DEFAULT gen_random_uuid(),
+  deleted_at TIMESTAMPTZ DEFAULT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Enable Row Level Security
 ALTER TABLE public.dreams ENABLE ROW LEVEL SECURITY;
 
--- 1. Policy: Users can read their own dreams
+-- 1. Policy: Users can read their own dreams (active only)
 DROP POLICY IF EXISTS "Users can read own dreams" ON public.dreams;
 CREATE POLICY "Users can read own dreams" ON public.dreams
-  FOR SELECT USING (auth.uid() = user_id);
+  FOR SELECT USING (auth.uid() = user_id AND (deleted_at IS NULL));
 
 -- 2. Policy: Users can insert their own dreams
 DROP POLICY IF EXISTS "Users can insert own dreams" ON public.dreams;
 CREATE POLICY "Users can insert own dreams" ON public.dreams
   FOR INSERT WITH CHECK (auth.uid() = user_id);
 
--- 3. Policy: Users can update their own dreams (for toggling share)
+-- 3. Policy: Users can update their own dreams (for toggling share or soft deleting)
 DROP POLICY IF EXISTS "Users can update own dreams" ON public.dreams;
 CREATE POLICY "Users can update own dreams" ON public.dreams
   FOR UPDATE USING (auth.uid() = user_id);
 
--- 4. Policy: Users can delete their own dreams
-DROP POLICY IF EXISTS "Users can delete own dreams" ON public.dreams;
-CREATE POLICY "Users can delete own dreams" ON public.dreams
-  FOR DELETE USING (auth.uid() = user_id);
-
--- 5. Policy: Anyone can read shared dreams (for public share links)
+-- 4. Policy: Anyone can read shared dreams (for public share links - active only)
 DROP POLICY IF EXISTS "Anyone can read shared dreams" ON public.dreams;
 CREATE POLICY "Anyone can read shared dreams" ON public.dreams
-  FOR SELECT USING (is_shared = true);
+  FOR SELECT USING (is_shared = true AND (deleted_at IS NULL));
 
--- 6. NEW Policy: Admin can see all dreams (REQUIRED for Admin Panel)
+-- 5. NEW Policy: Admin can see all dreams (including deleted)
 DROP POLICY IF EXISTS "Admin can see all dreams" ON public.dreams;
 CREATE POLICY "Admin can see all dreams" ON public.dreams
-  FOR SELECT USING (auth.jwt() ->> 'email' = 'ashubham328@gmail.com');
+  FOR SELECT USING (
+    (SELECT email FROM auth.users WHERE id = auth.uid()) = 'ashubham3288@gmail.com'
+  );
 
 -- Performance indexes
 CREATE INDEX IF NOT EXISTS idx_dreams_user_id ON public.dreams(user_id);
+CREATE INDEX IF NOT EXISTS idx_dreams_deleted ON public.dreams(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX IF NOT EXISTS idx_dreams_share_id ON public.dreams(share_id) WHERE is_shared = true;
 CREATE INDEX IF NOT EXISTS idx_dreams_shared ON public.dreams(is_shared) WHERE is_shared = true;

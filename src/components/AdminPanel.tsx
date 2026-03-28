@@ -6,16 +6,24 @@ import type { Dream } from '../lib/types';
 const AdminPanel: React.FC = () => {
   const [dreams, setDreams] = useState<Dream[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAll = async () => {
-      const { data, error } = await supabase
+      setLoading(true);
+      setError(null);
+      const { data, error: sbError } = await supabase
         .from('dreams')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (!error && data) setDreams(data as Dream[]);
+      if (sbError) {
+        console.error('Admin Fetch Error:', sbError);
+        setError(sbError.message);
+      } else if (data) {
+        setDreams(data as Dream[]);
+      }
       setLoading(false);
     };
     fetchAll();
@@ -31,10 +39,18 @@ const AdminPanel: React.FC = () => {
         Admin Panel
       </h1>
       <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', marginBottom: 32 }}>
-        All dream interpretations in the system ({dreams.length} total)
+        All dream interpretations in the system ({dreams.length} total, including deleted)
       </p>
 
-      {loading ? (
+      {error ? (
+        <div className="card" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.05)' }}>
+          <p style={{ color: '#ef4444', textAlign: 'center' }}>
+            <strong>Error loading dreams:</strong> {error}
+            <br />
+            <small style={{ opacity: 0.8 }}>Check your Supabase RLS policies and admin email.</small>
+          </p>
+        </div>
+      ) : loading ? (
         <div className="card"><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /><div className="shimmer shimmer-line" /></div>
       ) : dreams.length === 0 ? (
         <div className="empty-state">
@@ -61,6 +77,20 @@ const AdminPanel: React.FC = () => {
                   )}
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  {dream.deleted_at && (
+                    <span style={{ 
+                      fontSize: '0.65rem', 
+                      padding: '2px 6px', 
+                      borderRadius: '4px',
+                      background: 'rgba(239, 68, 68, 0.15)',
+                      color: '#ef4444',
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      textTransform: 'uppercase',
+                      fontWeight: 700
+                    }}>
+                      Deleted
+                    </span>
+                  )}
                   <span style={{ 
                     fontSize: '0.65rem', 
                     padding: '2px 6px', 
@@ -107,6 +137,12 @@ const AdminPanel: React.FC = () => {
                     <strong style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Guidance:</strong>
                     <p style={{ color: 'var(--accent-amber)', fontSize: '0.875rem', marginTop: 4 }}>{dream.interpretation.guidance}</p>
                   </div>
+                  {dream.deleted_at && (
+                    <div style={{ marginTop: 12, padding: '8px 12px', background: 'rgba(239, 68, 68, 0.05)', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
+                      <strong style={{ color: '#ef4444', fontSize: '0.75rem' }}>User Deleted On:</strong>
+                      <p style={{ color: 'var(--text)', fontSize: '0.875rem', marginTop: 2 }}>{formatDate(dream.deleted_at)}</p>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
