@@ -42,7 +42,13 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
       .from('dreams')
       .update({ deleted_at: new Date().toISOString() })
       .eq('id', dream.id);
-    if (!error) onUpdate?.();
+
+    if (error) {
+      console.error('Delete Error:', error);
+      alert(`Could not delete: ${error.message}`);
+    } else {
+      onUpdate?.();
+    }
   };
 
   return (
