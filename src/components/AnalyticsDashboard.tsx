@@ -167,7 +167,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
                   itemStyle={{ color: '#fff' }}
                   labelStyle={{ color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}
                 />
-                <Line type="monotone" dataKey="sentiment" name="Sentiment (1-10)" stroke="#fff" strokeWidth={3} dot={{ fill: '#0f172a', stroke: '#fff', strokeWidth: 2, r: 4 }} activeDot={{ r: 6, fill: '#fff', stroke: '#fff', strokeWidth: 0, boxShadow: '0 0 10px #fff' }} />
+                <Line type="monotone" dataKey="sentiment" name="Sentiment (1-10)" stroke="#fff" strokeWidth={3} dot={{ fill: '#0f172a', stroke: '#fff', strokeWidth: 2, r: 4 }} activeDot={{ r: 6, fill: '#fff', stroke: '#fff', strokeWidth: 0 }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
