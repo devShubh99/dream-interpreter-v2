@@ -12,3 +12,8 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build.environment]
+  # Omit scanning for these publicly safe env keys
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_ANON_KEY,VITE_ADMIN_EMAIL"
+  SECRETS_SCAN_OMIT_PATHS = "dist/assets/*,supabase-setup.sql"

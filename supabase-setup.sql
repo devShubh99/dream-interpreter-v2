@@ -39,7 +39,7 @@ CREATE POLICY "Anyone can read shared dreams" ON public.dreams
 -- 5. NEW Policy: Admin can see all dreams (including deleted)
 DROP POLICY IF EXISTS "Admin can see all dreams" ON public.dreams;
 CREATE POLICY "Admin can see all dreams" ON public.dreams
-  FOR SELECT USING (auth.jwt() ->> 'email' = 'ashubham32@gmail.com');
+  FOR SELECT USING (auth.jwt() ->> 'email' = 'your_admin_email@example.com');
 
 -- Performance indexes
 CREATE INDEX IF NOT EXISTS idx_dreams_user_id ON public.dreams(user_id);
