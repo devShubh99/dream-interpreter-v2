@@ -26,4 +26,5 @@ export interface Dream {
   main_themes?: string[] | null;
   deleted_at?: string;
   created_at: string;
+  archived_at?: string;
 }

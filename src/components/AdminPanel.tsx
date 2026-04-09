@@ -14,7 +14,7 @@ const AdminPanel: React.FC = () => {
       setLoading(true);
       setError(null);
       const { data, error: sbError } = await supabase
-        .from('dreams')
+        .from('dreams_archive')
         .select('*')
         .order('created_at', { ascending: false });
 

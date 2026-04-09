@@ -25,7 +25,6 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
       .from('dreams')
       .select('*')
       .eq('user_id', session.user.id)
-      .is('deleted_at', null)
       .order('created_at', { ascending: false });
 
     if (sbError) {
