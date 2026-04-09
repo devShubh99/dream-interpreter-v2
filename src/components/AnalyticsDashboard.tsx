@@ -24,7 +24,6 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
         .from('dreams')
         .select('*')
         .eq('user_id', session.user.id)
-        .is('deleted_at', null)
         .order('created_at', { ascending: true }); // Important: chronological order for charts
 
       if (!error && data) {
