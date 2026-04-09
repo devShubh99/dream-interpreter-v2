@@ -13,6 +13,7 @@ const AuthForm: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [isGenderOpen, setIsGenderOpen] = useState(false);
+  const [isForgotPassword, setIsForgotPassword] = useState(false);
 
   const genderOptions = [
     { value: 'male', label: 'Male' },
@@ -35,7 +36,13 @@ const AuthForm: React.FC = () => {
     }
 
     try {
-      if (isSignUp) {
+      if (isForgotPassword) {
+        const { error } = await supabase.auth.resetPasswordForEmail(trimmedEmail, {
+          redirectTo: `${window.location.origin}/update-password`,
+        });
+        if (error) throw error;
+        setSuccessMsg('Password reset link sent! Please check your email.');
+      } else if (isSignUp) {
         const trimmedName = name.trim();
         if (!trimmedName) {
           setError('Please enter your name');
@@ -156,50 +163,64 @@ const AuthForm: React.FC = () => {
               />
             </div>
 
-            <div className="input-group">
-              <label htmlFor="password" className="input-label">Password</label>
-              <div style={{ position: 'relative' }}>
-                <input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  className="input"
-                  placeholder="••••••••"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={6}
-                  autoComplete={isSignUp ? 'new-password' : 'current-password'}
-                  style={{ paddingRight: 44 }}
-                />
+            {!isForgotPassword && (
+              <div className="input-group">
+                <label htmlFor="password" className="input-label">Password</label>
+                <div style={{ position: 'relative' }}>
+                  <input
+                    id="password"
+                    type={showPassword ? 'text' : 'password'}
+                    className="input"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    minLength={6}
+                    autoComplete={isSignUp ? 'new-password' : 'current-password'}
+                    style={{ paddingRight: 44 }}
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: 12,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'var(--text-muted)',
+                      padding: 4,
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                    tabIndex={-1}
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {!isSignUp && !isForgotPassword && (
+              <div style={{ textAlign: 'right', marginTop: '-10px', marginBottom: '15px' }}>
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  style={{
-                    position: 'absolute',
-                    right: 12,
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    color: 'var(--text-muted)',
-                    padding: 4,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                  tabIndex={-1}
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  onClick={() => { setIsForgotPassword(true); setError(null); setSuccessMsg(null); }}
+                  style={{ background: 'none', border: 'none', color: '#3B82F6', fontSize: '0.85rem', cursor: 'pointer' }}
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  Forgot your password?
                 </button>
               </div>
-            </div>
+            )}
 
             <button type="submit" className="btn btn-primary btn-full" disabled={loading}>
               {loading ? (
                 <span className="spinner" style={{ width: 18, height: 18, borderWidth: 2 }} />
               ) : (
-                isSignUp ? 'Create Account' : 'Sign In'
+                isForgotPassword ? 'Send Reset Link' : isSignUp ? 'Create Account' : 'Sign In'
               )}
             </button>
 
@@ -208,10 +229,28 @@ const AuthForm: React.FC = () => {
           </form>
 
           <div className="auth-toggle">
-            {isSignUp ? 'Already have an account? ' : "Don't have an account? "}
-            <button onClick={() => { setIsSignUp(!isSignUp); setError(null); setSuccessMsg(null); }}>
-              {isSignUp ? 'Sign In' : 'Sign Up'}
-            </button>
+            {isForgotPassword ? (
+              <>
+                Remember your password?{' '}
+                <button onClick={() => { setIsForgotPassword(false); setError(null); setSuccessMsg(null); }}>
+                  Sign In
+                </button>
+              </>
+            ) : isSignUp ? (
+              <>
+                Already have an account?{' '}
+                <button onClick={() => { setIsSignUp(false); setError(null); setSuccessMsg(null); }}>
+                  Sign In
+                </button>
+              </>
+            ) : (
+              <>
+                Don't have an account?{' '}
+                <button onClick={() => { setIsSignUp(true); setError(null); setSuccessMsg(null); }}>
+                  Sign Up
+                </button>
+              </>
+            )}
           </div>
           <div className="footer-credit">Brewed with ❤️ & ☕ in BLR by Shubham.</div>
         </div>

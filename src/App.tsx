@@ -8,6 +8,7 @@ import DreamHistory from './components/DreamHistory';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import SharedDream from './components/SharedDream';
 import AdminPanel from './components/AdminPanel';
+import UpdatePasswordForm from './components/UpdatePasswordForm';
 import { isAdmin } from './lib/supabase';
 
 const Dashboard: React.FC = () => {
@@ -38,6 +39,7 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/shared/:shareId" element={<SharedDream />} />
+      <Route path="/update-password" element={<UpdatePasswordForm />} />
 
       <Route
         path="/"
