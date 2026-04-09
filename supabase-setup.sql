@@ -60,7 +60,7 @@ CREATE POLICY "Anyone can read shared dreams" ON public.dreams
 -- 6. Policy: Admin can see everything in the archive
 DROP POLICY IF EXISTS "Admin can see everything in archive" ON public.dreams_archive;
 CREATE POLICY "Admin can see everything in archive" ON public.dreams_archive
-  FOR SELECT USING (auth.jwt() ->> 'email' = 'your_admin_email@example.com');
+  FOR SELECT USING (auth.jwt() ->> 'email' = 'ashubham32@gmail.com');
 
 -- Archiving Function & Trigger
 CREATE OR REPLACE FUNCTION public.handle_dream_archiving()
