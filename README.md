@@ -9,7 +9,9 @@ An AI-powered celestial journal designed to translate the whispers of your subco
 -   **✨ AI-Driven Interpretation**: Leverages high-level AI (Google Gemini) to decode themes, emotional tones, and symbolic meanings in your dreams.
 -   **📔 Celestial Journaling**: A private history of your subconscious journey with premium dark-mode aesthetics, fluid animations, and sentiment-based color-coded glows.
 -   **📊 Analytics Dashboard & Sentiment Tracking**: Visualize your emotional journey with interactive charts driven by Recharts.
+-   **🔐 Account Recovery**: A secure "Forgot Password" flow via Supabase Auth to ensure you never get locked out of your journal.
 -   **🛡️ Secure & Private**: Built on Supabase with robust Row Level Security (RLS).
+-   **🗄️ Immutable Archiving**: An automated PostgreSQL archiving system ensuring data integrity and a comprehensive Admin Panel trail for deleted dreams.
 -   **🌓 Shared Visions**: Generate encrypted share links to pass your interpretations to others without compromising your entire journal.
 
 ## 🛠️ Technology Stack
