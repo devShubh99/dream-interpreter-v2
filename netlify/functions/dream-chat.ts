@@ -1,7 +1,7 @@
 import type { Handler } from "@netlify/functions";
 
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-live-preview:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
 
 const BASE_SYSTEM_PROMPT = `You are the user's best friend who just *gets* dreams on a weird, deep level. You're talking with a Gen Z teen or young adult about a dream they had.
 
