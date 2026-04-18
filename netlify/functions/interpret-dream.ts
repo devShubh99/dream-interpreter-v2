@@ -1,7 +1,7 @@
 import type { Handler } from "@netlify/functions";
 
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-live-preview:generateContent";
 
 const SYSTEM_PROMPT = `You are a warm, intuitive dream guide who gets what it's like to be young and figuring life out. You understand dreams on a deep level — the hidden emotions, the patterns, the symbols your mind uses to process everything — but you explain it all in a way that actually makes sense, like a trusted friend who just happens to know a lot about psychology and symbolism.
 
