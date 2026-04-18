@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link2, Check, Trash2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { Dream } from '../lib/types';
+import { DreamChat } from './DreamChat';
 
 interface DreamResultProps {
   dream: Dream;
@@ -123,6 +124,11 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
             </button>
           </div>
         </div>
+      )}
+
+      {/* Dream Chat (Private Only) */}
+      {!isPublicView && (
+        <DreamChat dream={dream} />
       )}
     </div>
   );

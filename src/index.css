@@ -391,3 +391,28 @@ body { -webkit-overflow-scrolling: touch; }
   font-weight: 300;
   width: 100%;
 }
+
+/* ---- Dream Chat ---- */
+.dream-chat-container { border-top: 1px solid var(--border); margin-top: 32px; padding-top: 24px; animation: fade-in 0.4s var(--ease-spring); }
+.dream-chat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; color: var(--text); }
+.dream-chat-header h3 { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.01em; }
+.chat-close-btn { margin-left: auto; background: var(--surface); color: var(--text-muted); border: 1px solid var(--border); border-radius: var(--radius-full); width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--ease-fast); font-size: 1.2rem; line-height: 1; padding-bottom: 2px; }
+.chat-close-btn:hover { background: var(--surface-hover); color: var(--text); }
+.dream-chat-messages { display: flex; flex-direction: column; gap: 16px; margin-bottom: 20px; max-height: 400px; overflow-y: auto; padding-right: 8px; scroll-behavior: smooth; }
+.chat-message { display: flex; flex-direction: column; max-width: 85%; animation: slide-up 0.3s ease-out; }
+.chat-user { align-self: flex-end; }
+.chat-ai { align-self: flex-start; }
+.chat-bubble { padding: 12px 16px; border-radius: var(--radius-lg); font-size: 0.95rem; line-height: 1.5; color: var(--text); }
+.chat-user .chat-bubble { background: var(--surface); border: 1px solid var(--border); border-bottom-right-radius: 4px; box-shadow: var(--shadow-sm); }
+.chat-ai .chat-bubble { background: linear-gradient(145deg, rgba(217, 70, 239, 0.1), rgba(168, 85, 247, 0.05)); border: 1px solid rgba(168, 85, 247, 0.3); border-bottom-left-radius: 4px; box-shadow: 0 4px 15px rgba(217, 70, 239, 0.05); }
+.chat-loading { display: flex; align-items: center; gap: 8px; color: var(--text-muted); font-size: 0.85rem; font-style: italic; border: 1px dashed var(--border) !important; background: transparent !important; }
+.dream-chat-empty { text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 0.95rem; }
+.chat-starter-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 16px; }
+.chat-starter-chips button { background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: var(--radius-full); font-size: 0.8rem; cursor: pointer; transition: all var(--ease-base); }
+.chat-starter-chips button:hover { background: rgba(168, 85, 247, 0.2); color: var(--text); transform: translateY(-1px); }
+.dream-chat-input-area { display: flex; gap: 12px; align-items: center; }
+.chat-input { flex: 1; border-radius: var(--radius-xl); background: rgba(0,0,0,0.2); border: 1px solid var(--border); color: var(--text); padding: 14px 20px; font-size: 0.95rem; outline: none; transition: all var(--ease-fast); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+.chat-input:focus { border-color: var(--border-focus); box-shadow: inset 0 2px 4px rgba(0,0,0,0.2), 0 0 0 3px var(--accent-soft); }
+.chat-send-btn { background: var(--gradient-accent); color: white; border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all var(--ease-fast); box-shadow: var(--shadow-sm); flex-shrink: 0; }
+.chat-send-btn:hover:not(:disabled) { box-shadow: var(--shadow-glow); transform: scale(1.05); }
+.chat-send-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }

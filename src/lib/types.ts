@@ -28,3 +28,18 @@ export interface Dream {
   created_at: string;
   archived_at?: string;
 }
+
+export interface ChatMessage {
+  role: 'user' | 'ai';
+  content: string;
+  created_at: string;
+}
+
+export interface DreamChat {
+  id: string;
+  dream_id: string;
+  user_id: string;
+  messages: ChatMessage[];
+  created_at: string;
+  updated_at: string;
+}

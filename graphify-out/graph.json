@@ -1,0 +1,610 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "vite.config.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\vite.config.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_vite_config_ts",
+      "community": 15,
+      "norm_label": "vite.config.ts"
+    },
+    {
+      "label": "dream-chat.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\dream-chat.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_dream_chat_ts",
+      "community": 4,
+      "norm_label": "dream-chat.ts"
+    },
+    {
+      "label": "handler()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\dream-chat.ts",
+      "source_location": "L11",
+      "id": "dream_chat_handler",
+      "community": 4,
+      "norm_label": "handler()"
+    },
+    {
+      "label": "interpret-dream.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\interpret-dream.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_interpret_dream_ts",
+      "community": 5,
+      "norm_label": "interpret-dream.ts"
+    },
+    {
+      "label": "handler()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\interpret-dream.ts",
+      "source_location": "L35",
+      "id": "interpret_dream_handler",
+      "community": 5,
+      "norm_label": "handler()"
+    },
+    {
+      "label": "App.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\App.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_app_tsx",
+      "community": 16,
+      "norm_label": "app.tsx"
+    },
+    {
+      "label": "main.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\main.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_main_tsx",
+      "community": 17,
+      "norm_label": "main.tsx"
+    },
+    {
+      "label": "vite-env.d.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\vite-env.d.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_vite_env_d_ts",
+      "community": 18,
+      "norm_label": "vite-env.d.ts"
+    },
+    {
+      "label": "AdminPanel.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AdminPanel.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_adminpanel_tsx",
+      "community": 1,
+      "norm_label": "adminpanel.tsx"
+    },
+    {
+      "label": "fetchAll()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AdminPanel.tsx",
+      "source_location": "L13",
+      "id": "adminpanel_fetchall",
+      "community": 1,
+      "norm_label": "fetchall()"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AdminPanel.tsx",
+      "source_location": "L32",
+      "id": "adminpanel_formatdate",
+      "community": 1,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "AnalyticsDashboard.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AnalyticsDashboard.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_analyticsdashboard_tsx",
+      "community": 6,
+      "norm_label": "analyticsdashboard.tsx"
+    },
+    {
+      "label": "fetchActiveDreams()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AnalyticsDashboard.tsx",
+      "source_location": "L20",
+      "id": "analyticsdashboard_fetchactivedreams",
+      "community": 6,
+      "norm_label": "fetchactivedreams()"
+    },
+    {
+      "label": "AuthForm.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AuthForm.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_authform_tsx",
+      "community": 7,
+      "norm_label": "authform.tsx"
+    },
+    {
+      "label": "handleSubmit()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AuthForm.tsx",
+      "source_location": "L25",
+      "id": "authform_handlesubmit",
+      "community": 7,
+      "norm_label": "handlesubmit()"
+    },
+    {
+      "label": "DreamChat.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamChat.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamchat_tsx",
+      "community": 2,
+      "norm_label": "dreamchat.tsx"
+    },
+    {
+      "label": "loadData()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamChat.tsx",
+      "source_location": "L21",
+      "id": "dreamchat_loaddata",
+      "community": 2,
+      "norm_label": "loaddata()"
+    },
+    {
+      "label": "handleSend()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamChat.tsx",
+      "source_location": "L55",
+      "id": "dreamchat_handlesend",
+      "community": 2,
+      "norm_label": "handlesend()"
+    },
+    {
+      "label": "DreamHistory.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamHistory.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamhistory_tsx",
+      "community": 3,
+      "norm_label": "dreamhistory.tsx"
+    },
+    {
+      "label": "fetchDreams()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamHistory.tsx",
+      "source_location": "L20",
+      "id": "dreamhistory_fetchdreams",
+      "community": 3,
+      "norm_label": "fetchdreams()"
+    },
+    {
+      "label": "formatDate()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamHistory.tsx",
+      "source_location": "L43",
+      "id": "dreamhistory_formatdate",
+      "community": 3,
+      "norm_label": "formatdate()"
+    },
+    {
+      "label": "DreamInput.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamInput.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreaminput_tsx",
+      "community": 8,
+      "norm_label": "dreaminput.tsx"
+    },
+    {
+      "label": "handleInterpret()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamInput.tsx",
+      "source_location": "L17",
+      "id": "dreaminput_handleinterpret",
+      "community": 8,
+      "norm_label": "handleinterpret()"
+    },
+    {
+      "label": "DreamResult.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "community": 0,
+      "norm_label": "dreamresult.tsx"
+    },
+    {
+      "label": "handleToggleShare()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L20",
+      "id": "dreamresult_handletoggleshare",
+      "community": 0,
+      "norm_label": "handletoggleshare()"
+    },
+    {
+      "label": "handleCopyLink()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L33",
+      "id": "dreamresult_handlecopylink",
+      "community": 0,
+      "norm_label": "handlecopylink()"
+    },
+    {
+      "label": "handleDelete()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L40",
+      "id": "dreamresult_handledelete",
+      "community": 0,
+      "norm_label": "handledelete()"
+    },
+    {
+      "label": "Layout.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\Layout.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_layout_tsx",
+      "community": 9,
+      "norm_label": "layout.tsx"
+    },
+    {
+      "label": "Layout()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\Layout.tsx",
+      "source_location": "L4",
+      "id": "layout_layout",
+      "community": 9,
+      "norm_label": "layout()"
+    },
+    {
+      "label": "NavBar.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\NavBar.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_navbar_tsx",
+      "community": 10,
+      "norm_label": "navbar.tsx"
+    },
+    {
+      "label": "handleSignOut()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\NavBar.tsx",
+      "source_location": "L12",
+      "id": "navbar_handlesignout",
+      "community": 10,
+      "norm_label": "handlesignout()"
+    },
+    {
+      "label": "SharedDream.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\SharedDream.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_shareddream_tsx",
+      "community": 11,
+      "norm_label": "shareddream.tsx"
+    },
+    {
+      "label": "fetchDream()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\SharedDream.tsx",
+      "source_location": "L13",
+      "id": "shareddream_fetchdream",
+      "community": 11,
+      "norm_label": "fetchdream()"
+    },
+    {
+      "label": "AuthContext.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\AuthContext.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_authcontext_tsx",
+      "community": 12,
+      "norm_label": "authcontext.tsx"
+    },
+    {
+      "label": "useAuth()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\AuthContext.tsx",
+      "source_location": "L12",
+      "id": "authcontext_useauth",
+      "community": 12,
+      "norm_label": "useauth()"
+    },
+    {
+      "label": "FilterContext.tsx",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\FilterContext.tsx",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_filtercontext_tsx",
+      "community": 13,
+      "norm_label": "filtercontext.tsx"
+    },
+    {
+      "label": "useFilter()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\FilterContext.tsx",
+      "source_location": "L20",
+      "id": "filtercontext_usefilter",
+      "community": 13,
+      "norm_label": "usefilter()"
+    },
+    {
+      "label": "supabase.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\supabase.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_supabase_ts",
+      "community": 14,
+      "norm_label": "supabase.ts"
+    },
+    {
+      "label": "isAdmin()",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\supabase.ts",
+      "source_location": "L12",
+      "id": "supabase_isadmin",
+      "community": 14,
+      "norm_label": "isadmin()"
+    },
+    {
+      "label": "types.ts",
+      "file_type": "code",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\types.ts",
+      "source_location": "L1",
+      "id": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_types_ts",
+      "community": 19,
+      "norm_label": "types.ts"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\dream-chat.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_dream_chat_ts",
+      "_tgt": "dream_chat_handler",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_dream_chat_ts",
+      "target": "dream_chat_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\netlify\\functions\\interpret-dream.ts",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_interpret_dream_ts",
+      "_tgt": "interpret_dream_handler",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_netlify_functions_interpret_dream_ts",
+      "target": "interpret_dream_handler",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AdminPanel.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_adminpanel_tsx",
+      "_tgt": "adminpanel_fetchall",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_adminpanel_tsx",
+      "target": "adminpanel_fetchall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AdminPanel.tsx",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_adminpanel_tsx",
+      "_tgt": "adminpanel_formatdate",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_adminpanel_tsx",
+      "target": "adminpanel_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AnalyticsDashboard.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_analyticsdashboard_tsx",
+      "_tgt": "analyticsdashboard_fetchactivedreams",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_analyticsdashboard_tsx",
+      "target": "analyticsdashboard_fetchactivedreams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\AuthForm.tsx",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_authform_tsx",
+      "_tgt": "authform_handlesubmit",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_authform_tsx",
+      "target": "authform_handlesubmit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamChat.tsx",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamchat_tsx",
+      "_tgt": "dreamchat_loaddata",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamchat_tsx",
+      "target": "dreamchat_loaddata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamChat.tsx",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamchat_tsx",
+      "_tgt": "dreamchat_handlesend",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamchat_tsx",
+      "target": "dreamchat_handlesend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamHistory.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamhistory_tsx",
+      "_tgt": "dreamhistory_fetchdreams",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamhistory_tsx",
+      "target": "dreamhistory_fetchdreams",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamHistory.tsx",
+      "source_location": "L43",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamhistory_tsx",
+      "_tgt": "dreamhistory_formatdate",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamhistory_tsx",
+      "target": "dreamhistory_formatdate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamInput.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreaminput_tsx",
+      "_tgt": "dreaminput_handleinterpret",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreaminput_tsx",
+      "target": "dreaminput_handleinterpret",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "_tgt": "dreamresult_handletoggleshare",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "target": "dreamresult_handletoggleshare",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L33",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "_tgt": "dreamresult_handlecopylink",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "target": "dreamresult_handlecopylink",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\DreamResult.tsx",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "_tgt": "dreamresult_handledelete",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_dreamresult_tsx",
+      "target": "dreamresult_handledelete",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\Layout.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_layout_tsx",
+      "_tgt": "layout_layout",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_layout_tsx",
+      "target": "layout_layout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\NavBar.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_navbar_tsx",
+      "_tgt": "navbar_handlesignout",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_navbar_tsx",
+      "target": "navbar_handlesignout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\components\\SharedDream.tsx",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_shareddream_tsx",
+      "_tgt": "shareddream_fetchdream",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_components_shareddream_tsx",
+      "target": "shareddream_fetchdream",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\AuthContext.tsx",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_authcontext_tsx",
+      "_tgt": "authcontext_useauth",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_authcontext_tsx",
+      "target": "authcontext_useauth",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\FilterContext.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_filtercontext_tsx",
+      "_tgt": "filtercontext_usefilter",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_filtercontext_tsx",
+      "target": "filtercontext_usefilter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "D:\\Projects\\dream-interpreter-v2\\dream-interpreter-v2\\src\\lib\\supabase.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_src": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_supabase_ts",
+      "_tgt": "supabase_isadmin",
+      "source": "d_projects_dream_interpreter_v2_dream_interpreter_v2_src_lib_supabase_ts",
+      "target": "supabase_isadmin",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": []
+}
