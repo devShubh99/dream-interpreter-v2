@@ -20,6 +20,7 @@
         "npm:react-dom@^18.3.1",
         "npm:react-router-dom@^6.28.0",
         "npm:react@^18.3.1",
+        "npm:recharts@^2.12.3",
         "npm:typescript@~5.6.3",
         "npm:vite@6"
       ]

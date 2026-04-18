@@ -5,6 +5,7 @@ import type { Dream } from '../lib/types';
 
 const AdminPanel: React.FC = () => {
   const [dreams, setDreams] = useState<Dream[]>([]);
+  const [chats, setChats] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -13,17 +14,27 @@ const AdminPanel: React.FC = () => {
     const fetchAll = async () => {
       setLoading(true);
       setError(null);
-      const { data, error: sbError } = await supabase
-        .from('dreams_archive')
-        .select('*')
-        .order('created_at', { ascending: false });
+      
+      const [dreamsRes, chatsRes] = await Promise.all([
+        supabase.from('dreams_archive').select('*').order('created_at', { ascending: false }),
+        supabase.from('dream_chats_archive').select('*')
+      ]);
 
-      if (sbError) {
-        console.error('Admin Fetch Error:', sbError);
-        setError(sbError.message);
-      } else if (data) {
-        setDreams(data as Dream[]);
+      if (dreamsRes.error) {
+        console.error('Admin Fetch Error:', dreamsRes.error);
+        setError(dreamsRes.error.message);
+      } else if (dreamsRes.data) {
+        setDreams(dreamsRes.data as Dream[]);
       }
+
+      if (chatsRes.data) {
+        const chatsMap: Record<string, any> = {};
+        chatsRes.data.forEach((chat: any) => {
+          chatsMap[chat.dream_id] = chat;
+        });
+        setChats(chatsMap);
+      }
+
       setLoading(false);
     };
     fetchAll();
@@ -137,8 +148,33 @@ const AdminPanel: React.FC = () => {
                     <strong style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Guidance:</strong>
                     <p style={{ color: 'var(--accent-amber)', fontSize: '0.875rem', marginTop: 4 }}>{dream.interpretation.guidance}</p>
                   </div>
+                  
+                  {chats[dream.id] && chats[dream.id].messages && chats[dream.id].messages.length > 0 && (
+                    <div style={{ marginTop: 20, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                      <strong style={{ color: 'var(--text-muted)', fontSize: '0.75rem', display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
+                        <Shield size={14} /> Archived Chat Log
+                      </strong>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, background: 'rgba(0,0,0,0.2)', padding: 12, borderRadius: 8 }}>
+                        {chats[dream.id].messages.map((msg: any, i: number) => (
+                          <div key={i} style={{
+                            alignSelf: msg.role === 'ai' ? 'flex-start' : 'flex-end',
+                            background: msg.role === 'ai' ? 'rgba(167, 139, 250, 0.1)' : 'rgba(255, 255, 255, 0.05)',
+                            padding: '8px 12px',
+                            borderRadius: '8px',
+                            maxWidth: '90%',
+                            fontSize: '0.8rem',
+                            color: 'var(--text)',
+                            border: `1px solid ${msg.role === 'ai' ? 'rgba(167, 139, 250, 0.2)' : 'rgba(255,255,255,0.1)'}`
+                          }}>
+                            {msg.content}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {dream.deleted_at && (
-                    <div style={{ marginTop: 12, padding: '8px 12px', background: 'rgba(239, 68, 68, 0.05)', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
+                    <div style={{ marginTop: 16, padding: '8px 12px', background: 'rgba(239, 68, 68, 0.05)', borderRadius: '6px', borderLeft: '3px solid #ef4444' }}>
                       <strong style={{ color: '#ef4444', fontSize: '0.75rem' }}>User Deleted On:</strong>
                       <p style={{ color: 'var(--text)', fontSize: '0.875rem', marginTop: 2 }}>{formatDate(dream.deleted_at)}</p>
                     </div>

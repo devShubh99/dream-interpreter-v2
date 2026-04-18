@@ -106,3 +106,49 @@ CREATE INDEX IF NOT EXISTS idx_dreams_share_id ON public.dreams(share_id) WHERE 
 CREATE INDEX IF NOT EXISTS idx_dreams_archive_deleted ON public.dreams_archive(deleted_at);
 CREATE INDEX IF NOT EXISTS idx_dreams_sentiment_score ON public.dreams(sentiment_score);
 CREATE INDEX IF NOT EXISTS idx_dreams_main_themes ON public.dreams USING GIN (main_themes);
+
+-- ==========================================
+-- Chat Tracking & Archiving
+-- ==========================================
+
+CREATE TABLE IF NOT EXISTS public.dream_chats (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  dream_id UUID NOT NULL REFERENCES public.dreams(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  messages JSONB DEFAULT '[]'::jsonb,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS public.dream_chats_archive (
+  id UUID PRIMARY KEY,
+  dream_id UUID NOT NULL,
+  user_id UUID NOT NULL,
+  messages JSONB DEFAULT '[]'::jsonb,
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ,
+  archived_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Archiving Trigger Logic for Chats
+CREATE OR REPLACE FUNCTION public.handle_dream_chat_archiving()
+RETURNS TRIGGER AS $$
+BEGIN
+  IF (TG_OP = 'INSERT' OR TG_OP = 'UPDATE') THEN
+    INSERT INTO public.dream_chats_archive (id, dream_id, user_id, messages, created_at, updated_at)
+    VALUES (NEW.id, NEW.dream_id, NEW.user_id, NEW.messages, NEW.created_at, NEW.updated_at)
+    ON CONFLICT (id) DO UPDATE SET
+      messages = EXCLUDED.messages,
+      updated_at = EXCLUDED.updated_at;
+    RETURN NEW;
+  ELSIF (TG_OP = 'DELETE') THEN
+    RETURN OLD;
+  END IF;
+  RETURN NULL;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+DROP TRIGGER IF EXISTS tr_archive_dream_chat ON public.dream_chats;
+CREATE TRIGGER tr_archive_dream_chat
+AFTER INSERT OR UPDATE OR DELETE ON public.dream_chats
+FOR EACH ROW EXECUTE FUNCTION public.handle_dream_chat_archiving();
