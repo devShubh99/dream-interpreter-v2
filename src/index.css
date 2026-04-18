@@ -84,8 +84,7 @@ a:hover { color: var(--accent-hover); }
 }
 @keyframes twinkle { 0%, 100% { opacity: 0.3; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
 
-/* Cloud effects replaced by background image */
-.cloud { display: none; }
+
 
 /* ---- Page Layout ---- */
 .page-container { max-width: 800px; margin: 0 auto; padding: 24px; padding-top: 88px; position: relative; z-index: 1; }
@@ -324,8 +323,7 @@ body { -webkit-overflow-scrolling: touch; }
   .card { padding: 24px; }
   .section-title { font-size: 1.25rem; }
   .shared-title { font-size: 1.5rem; }
-  .cloud-1 { width: 250px; height: 125px; }
-  .cloud-3 { width: 300px; height: 150px; }
+
   .history-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
 }
 
@@ -356,7 +354,7 @@ body { -webkit-overflow-scrolling: touch; }
   .dream-result-grid { gap: 12px; }
   .theme-tag { font-size: 0.8rem; padding: 5px 12px; }
   .insight-text { font-size: 0.95rem; }
-  .history-card-expanded { }
+
   .history-section { margin-top: 32px; }
   .section-title { font-size: 1.2rem; }
   .share-controls { flex-wrap: wrap; gap: 10px; }
@@ -376,8 +374,6 @@ body { -webkit-overflow-scrolling: touch; }
   .page-container { padding-left: max(12px, env(safe-area-inset-left)); padding-right: max(12px, env(safe-area-inset-right)); }
 }
 
-/* ---- Reduced Motion (Disabled for Drift) ---- */
-/* Removed override to ensure clouds drift regardless of system settings */
 
 /* ---- Footer Credit ---- */
 .footer-credit { 
