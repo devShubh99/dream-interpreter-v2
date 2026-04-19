@@ -1,25 +1,24 @@
 # 🌙 Dream Interpreter V2 ✨
 
-An AI-powered celestial journal designed to translate the whispers of your subconscious. Experience a premium, mystical interface while gaining deep insights into your dreams, symbols, and emotional atmosphere.
+An AI-powered celestial journal designed to translate the whispers of your subconscious. Experience a premium, mystical interface with responsive backgrounds, fluid glassmorphism animations, and deep spiritual insights.
 
 ![Dream Interpreter Social Preview](public/social-preview.png)
 
 ## 🌖 Core Features
 
--   **✨ AI-Driven Interpretation**: Leverages high-level AI (Google Gemini) to decode themes, emotional tones, and symbolic meanings in your dreams.
--   **📔 Celestial Journaling**: A private history of your subconscious journey with premium dark-mode aesthetics, fluid animations, and sentiment-based color-coded glows.
--   **📊 Analytics Dashboard & Sentiment Tracking**: Visualize your emotional journey with interactive charts driven by Recharts.
--   **🔐 Account Recovery**: A secure "Forgot Password" flow via Supabase Auth to ensure you never get locked out of your journal.
--   **🛡️ Secure & Private**: Built on Supabase with robust Row Level Security (RLS).
--   **🗄️ Immutable Archiving**: An automated PostgreSQL archiving system ensuring data integrity and a comprehensive Admin Panel trail for deleted dreams.
--   **🌓 Shared Visions**: Generate encrypted share links to pass your interpretations to others without compromising your entire journal.
+-   **✨ AI-Driven Interpretation**: Leverages Google Gemini to decode themes, emotional tones, and deep symbolic meanings.
+-   **💬 Chat with Your Dream**: Engage in a real-time dialogue with an AI celestial guide to dive deeper into specific symbols or feelings from your interpretation.
+-   **📔 Celestial Journaling**: A private history of your journey with sentiment-based color-coded glows and a smooth, persistent interface.
+-   **📊 Analytics Dashboard**: Visualize your emotional atmosphere over time with interactive charts powered by Recharts.
+-   **🔐 Shared Visions**: Generate encrypted share links to show your interpretations to others without compromising your private journal.
+-   **🌓 Device-Adaptive Experience**: Custom desktop and mobile mystical backgrounds for a seamless experience on any device.
+-   **🛡️ Secure & Private**: Built on Supabase with robust Row Level Security (RLS) and automated PostgreSQL archiving.
 
 ## 🛠️ Technology Stack
 
--   **Frontend**: React 18, Vite, TypeScript, React Router, Lucide Icons, Recharts.
--   **Styling**: Vanilla CSS (Custom Celestial Design System).
--   **Backend**: Netlify Serverless Functions.
--   **Database & Auth**: Supabase (PostgreSQL with GIN Indexing for fast search).
+-   **Frontend**: React 18, Vite, TypeScript, React Router.
+-   **Styling**: Vanilla CSS (Premium Glassmorphism Design System).
+-   **Backend**: Netlify Serverless Functions & Supabase.
 -   **AI Engine**: Google Gemini API.
 
 ## ⚙️ Quick Setup
@@ -27,7 +26,7 @@ An AI-powered celestial journal designed to translate the whispers of your subco
 ### 1. Requirements
 -   Node.js (v18+)
 -   Supabase Account
--   Netlify Account (for deployment)
+-   Netlify Account
 -   Gemini API Key
 
 ### 2. Local Configuration
@@ -39,13 +38,12 @@ VITE_SUPABASE_ANON_KEY=your_anon_key
 VITE_ADMIN_EMAIL=your_admin_email@example.com
 ```
 
-Create a `.env` file in the `netlify/functions` directory (or use Netlify dashboard):
-```env
-GEMINI_API_KEY=your_gemini_api_key
-```
-
 ### 3. Database Initialization
-Run the contents of [supabase-setup.sql](./supabase-setup.sql) in your Supabase SQL Editor to initialize the `dreams` table, RLS security policies, and GIN indices.
+Run the contents of [supabase-setup.sql](./supabase-setup.sql) in your Supabase SQL Editor. 
+**Important**: Ensure your `dreams` table includes the `deleted_at` column for the archiving trigger to function correctly:
+```sql
+ALTER TABLE public.dreams ADD COLUMN IF NOT EXISTS deleted_at timestamptz DEFAULT NULL;
+```
 
 ### 4. Installation
 ```bash
@@ -59,8 +57,7 @@ This project is optimized for **Netlify**.
 
 1.  Push your repository to GitHub.
 2.  Connect the repository to Netlify.
-3.  Add the environment variables listed above to your Netlify dashboard.
-4.  Standard builds use `npm run build` and publish the `dist` folder.
+3.  Add your Gemini API Key as a Environment Variable in the Netlify dashboard under `GEMINI_API_KEY`.
 
 ---
 
