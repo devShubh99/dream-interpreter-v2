@@ -47,7 +47,7 @@ body {
   font-family: var(--font);
   background: 
     linear-gradient(rgba(13, 5, 25, 0.5), rgba(13, 5, 25, 0.5)),
-    url('/ethereal-bg.jpg') no-repeat center center fixed;
+    url('/bg-desktop.jpg') no-repeat center center fixed;
   background-size: cover;
   background-color: var(--bg-deep);
   color: var(--text);
@@ -335,6 +335,12 @@ body { -webkit-overflow-scrolling: touch; }
 
 /* ---- Responsive: Phone ---- */
 @media (max-width: 640px) {
+  body {
+    background: 
+      linear-gradient(rgba(13, 5, 25, 0.5), rgba(13, 5, 25, 0.5)),
+      url('/bg-mobile.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
   .page-container { padding: 12px; padding-top: 68px; padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
   .card { padding: 16px; border-radius: var(--radius-md); }
   .card-header { font-size: 1.1rem; margin-bottom: 14px; }
