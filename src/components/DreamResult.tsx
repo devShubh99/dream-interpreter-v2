@@ -19,9 +19,16 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
 
   const handleToggleShare = async () => {
     const newShared = !isShared;
+    const updateData: any = { is_shared: newShared };
+    
+    // For legacy dreams without a share_id, generate one now
+    if (newShared && !dream.share_id) {
+      updateData.share_id = crypto.randomUUID();
+    }
+
     const { error } = await supabase
       .from('dreams')
-      .update({ is_shared: newShared })
+      .update(updateData)
       .eq('id', dream.id);
 
     if (!error) {
@@ -55,6 +62,12 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
   return (
     <div className="dream-result">
       <div className="dream-result-grid">
+        {/* Original Dream Text */}
+        <div className="card animate-slide-up" style={{ borderLeft: '4px solid var(--accent)', background: 'rgba(0,0,0,0.15)' }}>
+          <h3 className="card-header">📝 Your Dream</h3>
+          <p className="insight-text" style={{ fontStyle: 'italic', opacity: 0.9 }}>"{dream.dream_text}"</p>
+        </div>
+
         {/* Themes */}
         <div className="card animate-slide-up stagger-1">
           <h3 className="card-header">✨ Main Themes</h3>
