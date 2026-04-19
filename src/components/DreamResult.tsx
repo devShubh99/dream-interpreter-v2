@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link2, Check, Trash2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import type { Dream } from '../lib/types';
@@ -12,12 +12,21 @@ interface DreamResultProps {
 
 const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView = false }) => {
   const [isShared, setIsShared] = useState(dream.is_shared);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  // Keep state in sync with props (important for expanded cards when data refreshes)
+  useEffect(() => {
+    setIsShared(dream.is_shared);
+  }, [dream.is_shared]);
 
   const interp = dream.interpretation;
   if (!interp) return null;
 
   const handleToggleShare = async () => {
+    if (isUpdating) return;
+
+    const previousShared = isShared;
     const newShared = !isShared;
     const updateData: any = { is_shared: newShared };
     
@@ -26,13 +35,24 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
       updateData.share_id = crypto.randomUUID();
     }
 
+    // Optimistic Update
+    setIsShared(newShared);
+    setIsUpdating(true);
+
     const { error } = await supabase
       .from('dreams')
       .update(updateData)
       .eq('id', dream.id);
 
-    if (!error) {
-      setIsShared(newShared);
+    setIsUpdating(false);
+
+    if (error) {
+      console.error('Share Toggle Error:', error);
+      // Revert on error
+      setIsShared(previousShared);
+      alert(`Failed to update sharing: ${error.message}`);
+    } else {
+      // Trigger background refresh to keep parent state in sync
       onUpdate?.();
     }
   };
@@ -112,12 +132,17 @@ const DreamResult: React.FC<DreamResultProps> = ({ dream, onUpdate, isPublicView
       {!isPublicView && (
         <div className="card">
           <div className="share-controls" style={{ borderTop: 'none', paddingTop: 0, marginTop: 0 }}>
-            <label className="toggle">
-              <input type="checkbox" checked={isShared} onChange={handleToggleShare} />
+            <label className={`toggle ${isUpdating ? 'opacity-50 pointer-events-none' : ''}`}>
+              <input 
+                type="checkbox" 
+                checked={isShared} 
+                onChange={handleToggleShare}
+                disabled={isUpdating} 
+              />
               <span className="toggle-slider" />
             </label>
-            <span className="share-label">
-              {isShared ? 'Shared publicly' : 'Private'}
+            <span className="share-label" style={{ opacity: isUpdating ? 0.7 : 1 }}>
+              {isUpdating ? 'Updating...' : (isShared ? 'Shared publicly' : 'Private')}
             </span>
 
             {isShared && (

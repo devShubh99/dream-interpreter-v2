@@ -1,7 +1,7 @@
-# Graph Report - D:\Projects\dream-interpreter-v2\dream-interpreter-v2  (2026-04-18)
+# Graph Report - D:\Projects\dream-interpreter-v2\dream-interpreter-v2  (2026-04-19)
 
 ## Corpus Check
-- 20 files · ~39,068 words
+- 20 files · ~12,548 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
