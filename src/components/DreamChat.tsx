@@ -14,7 +14,8 @@ export function DreamChat({ dream, onClose }: DreamChatProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [chatId, setChatId] = useState<string | null>(null);
   const [pastDreams, setPastDreams] = useState<string[]>([]);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  // messagesEndRef removed to prevent scrollIntoView jumping
 
   // Fetch initial chat history and past 10 dreams
   useEffect(() => {
@@ -47,9 +48,11 @@ export function DreamChat({ dream, onClose }: DreamChatProps) {
     loadData();
   }, [dream.id, dream.user_id]);
 
-  // Auto-scroll to bottom of messages
+  // Auto-scroll to bottom of messages without jumping the whole page
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollContainerRef.current && messages.length > 0) {
+      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+    }
   }, [messages]);
 
   const handleSend = async (e?: React.FormEvent, presetMessage?: string) => {
@@ -148,7 +151,7 @@ export function DreamChat({ dream, onClose }: DreamChatProps) {
         )}
       </div>
 
-      <div className="dream-chat-messages">
+      <div className="dream-chat-messages" ref={scrollContainerRef}>
         {messages.length === 0 ? (
           <div className="dream-chat-empty">
             <p>Ask a question about your dream or explore its meaning deeper.</p>
@@ -181,7 +184,6 @@ export function DreamChat({ dream, onClose }: DreamChatProps) {
             </div>
           </div>
         )}
-        <div ref={messagesEndRef} />
       </div>
 
       <form onSubmit={handleSend} className="dream-chat-input-area">

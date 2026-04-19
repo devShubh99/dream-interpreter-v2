@@ -17,9 +17,9 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
   const [error, setError] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
-  const fetchDreams = async () => {
+  const fetchDreams = async (silent = false) => {
     if (!session) return;
-    setLoading(true);
+    if (!silent) setLoading(true);
     setError(null);
     const { data, error: sbError } = await supabase
       .from('dreams')
@@ -139,7 +139,7 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
 
             {expandedId === dream.id && (
               <div className="history-expanded" onClick={(e) => e.stopPropagation()}>
-                <DreamResult dream={dream} onUpdate={fetchDreams} />
+                <DreamResult dream={dream} onUpdate={() => fetchDreams(true)} />
               </div>
             )}
           </div>
