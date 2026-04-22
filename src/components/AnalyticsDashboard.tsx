@@ -173,7 +173,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
         </div>
 
         {topThemes.length > 0 && (
-          <div>
+          <div style={{ marginTop: '2rem' }}>
             <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
               Dominant Archetypes
             </h3>
