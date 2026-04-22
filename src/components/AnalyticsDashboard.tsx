@@ -36,8 +36,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (loading) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ animationDelay: '0.2s', marginBottom: '2rem' }}>
-        <div className="card shimmer-card" style={{ height: 300 }} />
+      <div className="analytics-section">
+        <div className="card celestial-card shimmer-card" style={{ height: 300 }} />
       </div>
     );
   }
@@ -64,7 +64,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
   // Render Stars function
   const renderStars = (count: number) => {
     return (
-      <div style={{ display: 'flex', gap: 4, justifyContent: 'center', margin: '16px 0', color: '#F59E0B' }}>
+      <div style={{ display: 'flex', gap: 4, justifyContent: 'center', color: '#F59E0B' }}>
         {[1, 2, 3].map((num) => (
           <Star key={num} size={20} fill={num <= count ? 'currentColor' : 'transparent'} stroke="currentColor" opacity={num <= count ? 1 : 0.3} />
         ))}
@@ -74,8 +74,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (activeDreamsCount === 0) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
-        <div className="card glass-panel" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
+      <div className="analytics-section">
+        <div className="card celestial-card" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
           {/* Faint Outline */}
           <div style={{ position: 'absolute', inset: 0, opacity: 0.05, pointerEvents: 'none' }}>
             <ResponsiveContainer width="100%" height="100%">
@@ -85,13 +85,13 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
             </ResponsiveContainer>
           </div>
           
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', position: 'relative' }}>Your celestial journal awaits.</h2>
+          <h2 style={{ fontSize: '1.5rem', position: 'relative' }}>Your celestial journal awaits.</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto', lineHeight: 1.6, position: 'relative' }}>
             Insights emerge from patterns, not isolated events. To map your subconscious and identify recurring Jungian archetypes, we need a baseline of your psychic landscape.
           </p>
           
           {renderStars(0)}
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>0 / 3 dreams logged</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>0 / 3 dreams logged</p>
           
           <button className="btn btn-primary" onClick={focusInput} style={{ position: 'relative', boxShadow: '0 0 15px rgba(255, 255, 255, 0.4)' }}>
             Log Your First Dream
@@ -103,8 +103,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (activeDreamsCount < 3) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
-        <div className="card glass-panel" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
+      <div className="analytics-section">
+        <div className="card celestial-card" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
           {/* Slightly more opaque Outline */}
           <div style={{ position: 'absolute', inset: 0, opacity: 0.15, pointerEvents: 'none' }}>
             <ResponsiveContainer width="100%" height="100%">
@@ -114,13 +114,13 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
             </ResponsiveContainer>
           </div>
           
-          <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', position: 'relative' }}>The constellation is forming.</h2>
+          <h2 style={{ fontSize: '1.5rem', position: 'relative' }}>The constellation is forming.</h2>
           <p style={{ color: 'var(--text-secondary)', maxWidth: 500, margin: '0 auto', lineHeight: 1.6, position: 'relative' }}>
             We are beginning to see the shape of your subconscious. Log {3 - activeDreamsCount} more {3 - activeDreamsCount === 1 ? 'entry' : 'entries'} to unlock your emotional trendline and discover the dominant symbols driving your inner world.
           </p>
           
           {renderStars(activeDreamsCount)}
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>{activeDreamsCount} / 3 dreams logged</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{activeDreamsCount} / 3 dreams logged</p>
           
           <button className="btn" onClick={focusInput} style={{ position: 'relative', background: 'rgba(255,255,255,0.1)', color: 'white' }}>
             Return to the Dreamscape
@@ -147,12 +147,12 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
     .map(entry => entry[0]);
 
   return (
-    <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
+    <div className="analytics-section">
       <h2 className="section-title">✨ Subconscious Analytics</h2>
-      <div className="card glass-panel" style={{ padding: '2rem' }}>
+      <div className="card celestial-card" style={{ padding: '2rem' }}>
         
-        <div style={{ marginBottom: '2rem' }}>
-          <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div>
+          <h3 style={{ fontSize: '1.1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
             <Sparkles size={18} /> Emotional Trendline
           </h3>
           <div style={{ height: 250, width: '100%', outline: 'none' }}>
@@ -173,7 +173,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
         </div>
 
         {topThemes.length > 0 && (
-          <div>
+          <div style={{ marginTop: '2rem' }}>
             <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
               Dominant Archetypes
             </h3>
@@ -201,7 +201,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
               })}
             </div>
             {filterWord && (
-               <p style={{ marginTop: 12, fontSize: '0.85rem', color: '#3B82F6' }}>
+               <p style={{ fontSize: '0.85rem', color: '#3B82F6' }}>
                  Filtering journal by archetype: <strong>{filterWord}</strong>
                  <button onClick={() => setFilterWord('')} style={{ background: 'none', border: 'none', color: '#ef4444', marginLeft: 8, cursor: 'pointer', textDecoration: 'underline' }}>Clear</button>
                </p>

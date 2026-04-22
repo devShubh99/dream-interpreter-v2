@@ -40,6 +40,8 @@
   --ease-fast: 150ms ease;
   --ease-base: 250ms ease;
   --ease-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --card-glow-color: rgba(140, 120, 255, 0.8);
+  --card-border-width: 1.5px;
 }
 
 html { font-size: 16px; -webkit-font-smoothing: antialiased; background-color: var(--bg-deep); overscroll-behavior: none; }
@@ -87,7 +89,17 @@ a:hover { color: var(--accent-hover); }
 
 
 /* ---- Page Layout ---- */
-.page-container { max-width: 800px; margin: 0 auto; padding: 24px; padding-top: 88px; position: relative; z-index: 1; }
+.page-container { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 24px; 
+  padding-top: 88px; 
+  position: relative; 
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
 
 /* ---- Navbar ---- */
 .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 24px; background: rgba(13,5,25,0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -117,22 +129,56 @@ a:hover { color: var(--accent-hover); }
 .btn-full { width: 100%; }
 
 /* ---- Cards ---- */
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 32px; backdrop-filter: blur(12px); transition: all var(--ease-base); }
-.card:hover { border-color: var(--border-hover); box-shadow: var(--shadow-glow); }
+.card { 
+  background: var(--surface); 
+  border: var(--card-border-width) solid var(--card-glow-color); 
+  border-radius: var(--radius-lg); 
+  padding: 32px; 
+  backdrop-filter: blur(12px); 
+  transition: all var(--ease-base);
+  transform: translateZ(0);
+  /* The "Journal" shadow pattern */
+  box-shadow: 0 0 15px var(--card-glow-color), 0 4px 12px rgba(0,0,0,0.3);
+}
+.card:hover { 
+  border-color: rgba(140, 120, 255, 0.6); 
+  box-shadow: 0 0 25px var(--card-glow-color), 0 8px 40px rgba(0, 0, 0, 0.45); 
+}
+
+.celestial-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(168, 85, 247, 0.03));
+  border-width: var(--card-border-width);
+  border-style: solid;
+  border-color: var(--current-sentiment-color, var(--card-glow-color));
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 0 15px var(--current-sentiment-color, var(--card-glow-color)), 0 4px 12px rgba(0,0,0,0.3);
+  transition: all var(--ease-base);
+  transform: translateZ(0);
+}
+
+.celestial-card:hover {
+  border-color: rgba(140, 120, 255, 0.6);
+  box-shadow: 0 0 25px var(--current-sentiment-color, var(--card-glow-color)), 0 8px 40px rgba(0, 0, 0, 0.45);
+}
 
 /* ---- Dream Input Glassmorphism Card ---- */
 .dream-input-card {
   background: linear-gradient(145deg, rgba(217, 70, 239, 0.1), rgba(168, 85, 247, 0.06), rgba(30, 16, 64, 0.6));
-  border: 1.5px solid rgba(120, 100, 255, 0.4);
+  border-width: var(--card-border-width);
+  border-style: solid;
+  border-color: var(--current-sentiment-color, var(--card-glow-color));
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 0 15px rgba(120, 100, 255, 0.25), 0 0 40px rgba(120, 100, 255, 0.1), 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px var(--current-sentiment-color, var(--card-glow-color)), 0 4px 12px rgba(0,0,0,0.3);
   padding: 36px;
+  transform: translateZ(0);
 }
 .dream-input-card:hover {
-  border-color: rgba(140, 120, 255, 0.55);
-  box-shadow: 0 0 20px rgba(120, 100, 255, 0.35), 0 0 60px rgba(120, 100, 255, 0.15), 0 8px 40px rgba(0, 0, 0, 0.45);
+  border-color: rgba(140, 120, 255, 0.6);
+  box-shadow: 0 0 25px var(--current-sentiment-color, var(--card-glow-color)), 0 8px 40px rgba(0, 0, 0, 0.45);
 }
+
 .dream-input-title {
   font-size: 1.6rem;
   font-weight: 700;
@@ -248,18 +294,21 @@ textarea.input { resize: vertical; min-height: 160px; line-height: 1.6; }
 .copied-toast { color: var(--accent-green); font-size: 0.75rem; font-weight: 500; animation: fade-in 0.3s ease; }
 
 /* ---- Dream History ---- */
-.history-section { margin-top: 48px; }
+.history-section { }
 .section-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 20px; }
 .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.history-card { 
+.history-card {
   cursor: pointer; 
-  padding: 20px; 
-  border-color: var(--current-sentiment-color, var(--border));
-  box-shadow: 0 0 15px var(--current-sentiment-color, transparent);
-  transition: all var(--ease-base);
+  padding: 20px;
+  border-width: var(--card-border-width);
+  border-style: solid;
+  border-color: var(--current-sentiment-color, var(--card-glow-color));
+  box-shadow: 0 0 15px var(--current-sentiment-color, var(--card-glow-color)), 0 4px 12px rgba(0,0,0,0.3);
+  transform: translateZ(0);
 }
 .history-card:hover {
-  box-shadow: 0 0 25px var(--current-sentiment-color, var(--shadow-glow));
+  border-color: rgba(140, 120, 255, 0.6);
+  box-shadow: 0 0 25px var(--current-sentiment-color, var(--card-glow-color)), 0 8px 40px rgba(0, 0, 0, 0.45);
 }
 .history-card-expanded { grid-column: 1 / -1; }
 .history-date { font-size: 0.75rem; color: var(--accent-amber); font-weight: 600; margin-bottom: 6px; display: block; }
@@ -367,7 +416,7 @@ body { -webkit-overflow-scrolling: touch; }
   .theme-tag { font-size: 0.8rem; padding: 5px 12px; }
   .insight-text { font-size: 0.95rem; }
 
-  .history-section { margin-top: 32px; }
+  .history-section { }
   .section-title { font-size: 1.2rem; }
   .share-controls { flex-wrap: wrap; gap: 10px; }
   .copy-link-btn { margin-left: 0; }

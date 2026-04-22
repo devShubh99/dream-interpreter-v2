@@ -48,10 +48,10 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
 
   if (error) {
     return (
-      <div className="history-section animate-slide-up" style={{ animationDelay: '0.4s' }}>
+      <div className="history-section">
         <h2 className="section-title">📔 Your Dream Journal</h2>
-        <div className="card" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.05)', padding: '24px', textAlign: 'center' }}>
-          <p style={{ color: '#ef4444', marginBottom: 12 }}>
+        <div className="card celestial-card" style={{ borderColor: 'rgba(239, 68, 68, 0.3)', background: 'rgba(239, 68, 68, 0.05)', padding: '24px', textAlign: 'center' }}>
+          <p style={{ color: '#ef4444' }}>
             <strong>Error loading journal:</strong> {error}
           </p>
           <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>
@@ -64,13 +64,13 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
 
   if (loading) {
     return (
-      <div className="history-section animate-slide-up" style={{ animationDelay: '0.4s' }}>
+      <div className="history-section">
         <h2 className="section-title">📔 Your Dream Journal</h2>
         <div className="history-grid">
           {[1, 2, 3, 4].map(i => (
-            <div key={i} className="card shimmer-card">
-              <div className="shimmer shimmer-line" style={{ width: '40%', marginBottom: 12 }} />
-              <div className="shimmer shimmer-line" style={{ width: '90%', marginBottom: 8 }} />
+            <div key={i} className="card celestial-card shimmer-card">
+              <div className="shimmer shimmer-line" style={{ width: '40%' }} />
+              <div className="shimmer shimmer-line" style={{ width: '90%' }} />
               <div className="shimmer shimmer-line" style={{ width: '70%' }} />
             </div>
           ))}
@@ -83,7 +83,7 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
     return (
       <div className="history-section">
         <h2 className="section-title">📔 Your Dream Journal</h2>
-        <div className="empty-state">
+        <div className="card celestial-card empty-state">
           <div className="empty-state-icon">☁️</div>
           <p className="empty-state-text">No dreams yet. Describe your first dream above to start your journey! ✨</p>
         </div>
@@ -119,7 +119,7 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
         {filteredDreams.map((dream) => (
           <div
             key={dream.id}
-            className={`card history-card ${expandedId === dream.id ? 'history-card-expanded' : ''}`}
+            className={`card celestial-card history-card ${expandedId === dream.id ? 'history-card-expanded' : ''}`}
             onClick={() => setExpandedId(expandedId === dream.id ? null : dream.id)}
             style={{ '--current-sentiment-color': getSentimentColor(dream.sentiment_score) } as React.CSSProperties}
           >
@@ -135,7 +135,7 @@ const DreamHistory: React.FC<DreamHistoryProps> = ({ refreshKey }) => {
               </div>
             )}
 
-            {dream.is_shared && <span className="badge badge-shared" style={{ marginTop: 8, display: 'inline-block' }}>Shared</span>}
+            {dream.is_shared && <span className="badge badge-shared">Shared</span>}
 
             {expandedId === dream.id && (
               <div className="history-expanded" onClick={(e) => e.stopPropagation()}>
