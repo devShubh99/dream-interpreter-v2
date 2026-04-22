@@ -87,7 +87,17 @@ a:hover { color: var(--accent-hover); }
 
 
 /* ---- Page Layout ---- */
-.page-container { max-width: 800px; margin: 0 auto; padding: 24px; padding-top: 88px; position: relative; z-index: 1; }
+.page-container { 
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 24px; 
+  padding-top: 88px; 
+  position: relative; 
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
 
 /* ---- Navbar ---- */
 .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 24px; background: rgba(13,5,25,0.2); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -248,7 +258,7 @@ textarea.input { resize: vertical; min-height: 160px; line-height: 1.6; }
 .copied-toast { color: var(--accent-green); font-size: 0.75rem; font-weight: 500; animation: fade-in 0.3s ease; }
 
 /* ---- Dream History ---- */
-.history-section { margin-top: 48px; }
+.history-section { }
 .section-title { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 20px; }
 .history-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .history-card { 
@@ -367,7 +377,7 @@ body { -webkit-overflow-scrolling: touch; }
   .theme-tag { font-size: 0.8rem; padding: 5px 12px; }
   .insight-text { font-size: 0.95rem; }
 
-  .history-section { margin-top: 32px; }
+  .history-section { }
   .section-title { font-size: 1.2rem; }
   .share-controls { flex-wrap: wrap; gap: 10px; }
   .copy-link-btn { margin-left: 0; }
