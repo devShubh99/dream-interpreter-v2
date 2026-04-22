@@ -36,7 +36,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (loading) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ animationDelay: '0.2s', marginBottom: '2rem' }}>
+      <div className="analytics-section animate-slide-up" style={{ animationDelay: '0.2s' }}>
         <div className="card shimmer-card" style={{ height: 300 }} />
       </div>
     );
@@ -74,7 +74,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (activeDreamsCount === 0) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
+      <div className="analytics-section animate-slide-up">
         <div className="card glass-panel" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
           {/* Faint Outline */}
           <div style={{ position: 'absolute', inset: 0, opacity: 0.05, pointerEvents: 'none' }}>
@@ -91,7 +91,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
           </p>
           
           {renderStars(0)}
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>0 / 3 dreams logged</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>0 / 3 dreams logged</p>
           
           <button className="btn btn-primary" onClick={focusInput} style={{ position: 'relative', boxShadow: '0 0 15px rgba(255, 255, 255, 0.4)' }}>
             Log Your First Dream
@@ -103,7 +103,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
 
   if (activeDreamsCount < 3) {
     return (
-      <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
+      <div className="analytics-section animate-slide-up">
         <div className="card glass-panel" style={{ position: 'relative', overflow: 'hidden', padding: '3rem 2rem', textAlign: 'center' }}>
           {/* Slightly more opaque Outline */}
           <div style={{ position: 'absolute', inset: 0, opacity: 0.15, pointerEvents: 'none' }}>
@@ -120,7 +120,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
           </p>
           
           {renderStars(activeDreamsCount)}
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', marginBottom: '1.5rem' }}>{activeDreamsCount} / 3 dreams logged</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>{activeDreamsCount} / 3 dreams logged</p>
           
           <button className="btn" onClick={focusInput} style={{ position: 'relative', background: 'rgba(255,255,255,0.1)', color: 'white' }}>
             Return to the Dreamscape
@@ -147,11 +147,11 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ refreshKey }) =
     .map(entry => entry[0]);
 
   return (
-    <div className="analytics-section animate-slide-up" style={{ marginBottom: '2rem' }}>
+    <div className="analytics-section animate-slide-up">
       <h2 className="section-title">✨ Subconscious Analytics</h2>
       <div className="card glass-panel" style={{ padding: '2rem' }}>
         
-        <div style={{ marginBottom: '2rem' }}>
+        <div>
           <h3 style={{ fontSize: '1.1rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: 8 }}>
             <Sparkles size={18} /> Emotional Trendline
           </h3>
