@@ -162,6 +162,16 @@ a:hover { color: var(--accent-hover); }
   box-shadow: 0 0 25px var(--current-sentiment-color, var(--card-glow-color)), 0 8px 40px rgba(0, 0, 0, 0.45);
 }
 
+/* Remove borders and glow from nested cards */
+.card .card {
+  border: none;
+  box-shadow: none;
+}
+.card .card:hover {
+  box-shadow: none;
+  border-color: transparent;
+}
+
 /* ---- Dream Input Glassmorphism Card ---- */
 .dream-input-card {
   background: linear-gradient(145deg, rgba(217, 70, 239, 0.1), rgba(168, 85, 247, 0.06), rgba(30, 16, 64, 0.6));
