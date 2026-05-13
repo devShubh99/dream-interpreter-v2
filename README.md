@@ -11,6 +11,7 @@ An AI-powered celestial journal designed to translate the whispers of your subco
 -   **📔 Celestial Journaling**: A private history of your journey with sentiment-based color-coded glows and a smooth, persistent interface.
 -   **📊 Analytics Dashboard**: Visualize your emotional atmosphere over time with interactive charts powered by Recharts.
 -   **🔐 Shared Visions**: Generate encrypted share links to show your interpretations to others without compromising your private journal.
+-   **✉️ Secure OTP Registration**: A sleek, passwordless-style OTP verification flow for new users, instantly paired with seamless password setup.
 -   **🌓 Device-Adaptive Experience**: Custom desktop and mobile mystical backgrounds for a seamless experience on any device.
 -   **🛡️ Secure & Private**: Built on Supabase with robust Row Level Security (RLS) and automated PostgreSQL archiving.
 
@@ -45,7 +46,13 @@ Run the contents of [supabase-setup.sql](./supabase-setup.sql) in your Supabase 
 ALTER TABLE public.dreams ADD COLUMN IF NOT EXISTS deleted_at timestamptz DEFAULT NULL;
 ```
 
-### 4. Installation
+### 4. Configure OTP Authentication (Supabase Dashboard)
+For the 6-digit OTP signup flow to function properly instead of sending Magic Links:
+1. Go to **Authentication > Email Templates** in your Supabase project.
+2. Select the **Magic Link** template.
+3. Replace the default template with a custom HTML design that includes `{{ .Token }}` instead of a confirmation URL. (See the included `artifacts/supabase_email_template_setup.md` for the exact template code used in this project).
+
+### 5. Installation
 ```bash
 npm install
 npm run dev
